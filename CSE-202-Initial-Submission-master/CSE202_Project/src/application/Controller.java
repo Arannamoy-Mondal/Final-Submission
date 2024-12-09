@@ -203,6 +203,7 @@ public class Controller implements Initializable {
             scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
             stage.setScene(scene);
             stage.show();
+            DataHandler.saveData(Main.evp1);
 
         } catch (Exception ex) {
             System.out.println("Error in offerTourBtn");
@@ -223,7 +224,8 @@ public class Controller implements Initializable {
     TextField numberOfParticipantsForOfferTourPackage;
     @FXML
     Button offerTourPackageSubmitButton = new Button("OfferTourPackage");
-
+    @FXML
+    Text massageBoxOfferBtn=new Text();
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
             String tourId = Main.evp1.offerTourPackage(
@@ -232,8 +234,10 @@ public class Controller implements Initializable {
                     Integer.parseInt(durationDaysForOfferTourPackage.getText()),
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
+                    massageBoxOfferBtn.setText("Offered tour successfully.");
 //            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
+            massageBoxOfferBtn.setText("Something went wrong");
             System.out.println("Error in offerTourPackageSubmitBtn");
         }
     }
@@ -332,9 +336,12 @@ public class Controller implements Initializable {
     public void manageTasks(ActionEvent event) {
         try {
             if (addTaskRadioBtn.isSelected()) {
-                Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
-                System.out.println("Add Task");
-                messgaeBoxTaskManage.setText("Task added successfully.");
+                try{
+                    Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
+                    messgaeBoxTaskManage.setText("Task added successfully.");
+                } catch (Exception e) {
+                    messgaeBoxTaskManage.setText(e.toString());
+                }
                 if(Main.evp1.getEvents().size()<1){
                     allEventsList.getItems().clear();
                     allEventsList.getItems().add("No Event Found");
@@ -347,8 +354,12 @@ public class Controller implements Initializable {
                 }
             } else if (startTaskRadioBtn.isSelected()) {
 //                System.out.println("Star Task");
-                Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
-                messgaeBoxTaskManage.setText("Task start successfully.");
+                try{
+                    Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
+                    messgaeBoxTaskManage.setText("Task start successfully.");
+                } catch (Exception e) {
+                    messgaeBoxTaskManage.setText(e.toString());
+                }
                 if(Main.evp1.getEvents().size()<1){
                     allEventsList.getItems().clear();
                     allEventsList.getItems().add("No Event Found");
@@ -361,8 +372,12 @@ public class Controller implements Initializable {
                 }
             } else if (endTaskRadioBtn.isSelected()) {
 //                System.out.println("End Btn");
-                Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
-                messgaeBoxTaskManage.setText("Task completed successfully.");
+                try{
+                    Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
+                    messgaeBoxTaskManage.setText("Task completed successfully.");
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
                 if(Main.evp1.getEvents().size()<1){
                     allEventsList.getItems().clear();
                     allEventsList.getItems().add("No Event Found");
