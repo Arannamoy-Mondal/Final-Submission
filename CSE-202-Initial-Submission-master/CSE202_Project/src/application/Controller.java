@@ -232,7 +232,7 @@ public class Controller implements Initializable {
                     Integer.parseInt(durationDaysForOfferTourPackage.getText()),
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
-            System.out.println(Main.evp1.getEvents());
+//            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
             System.out.println("Error in offerTourPackageSubmitBtn");
         }
@@ -281,14 +281,14 @@ public class Controller implements Initializable {
 //            eventStatus.setText(Main.evp1.showRequestedEvents());
             eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
             messgaeBoxAcceptEvent.setText("Accepted Event.");
-            System.out.println(eventIdAcceptEvent.getText());
+//            System.out.println(eventIdAcceptEvent.getText());
             if(Main.evp1.getRequestedEvents().size()<1){
                 requestedEventsList.getItems().clear();
                 requestedEventsList.getItems().add("No Event Found");
             }
             else{
                 for(Event e:Main.evp1.getRequestedEvents()){
-                    System.out.println(e.toString());
+//                    System.out.println(e.toString());
                     requestedEventsList.getItems().add(e.toString());
                 }
             }
@@ -346,7 +346,7 @@ public class Controller implements Initializable {
                     }
                 }
             } else if (startTaskRadioBtn.isSelected()) {
-                System.out.println("Star Task");
+//                System.out.println("Star Task");
                 Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                 messgaeBoxTaskManage.setText("Task start successfully.");
                 if(Main.evp1.getEvents().size()<1){
@@ -360,7 +360,7 @@ public class Controller implements Initializable {
                     }
                 }
             } else if (endTaskRadioBtn.isSelected()) {
-                System.out.println("End Btn");
+//                System.out.println("End Btn");
                 Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                 messgaeBoxTaskManage.setText("Task completed successfully.");
                 if(Main.evp1.getEvents().size()<1){
@@ -444,7 +444,7 @@ public class Controller implements Initializable {
             else{
                 allEventsList.getItems().clear();
                 for(Event e:Main.evp1.getRequestedEvents()){
-                    System.out.println(e.toString());
+//                    System.out.println(e.toString());
                     requestedEventsList.getItems().add(e.toString());
                 }
             }

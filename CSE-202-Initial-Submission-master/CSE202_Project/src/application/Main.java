@@ -33,15 +33,16 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		try {
-			String id = Main.evp1.offerTourPackage("Tour Kaptai", LocalDate.now(), 20, 20, 2000);
+//			String id = Main.evp1.offerTourPackage("Tour Kaptai", LocalDate.now(), 20, 20, 2000);
 //			Main.evp1.addEventTask(id, "Boarding", "DAC"); // given error when add task error type java.util.ArrayList.add(Object)
-			System.out.println(id);
-			Main.evp1.assignEventManager(id, "Manager1");
-			Main.evp1.requestEvent("Tour Ibliz","0123456789",LocalDate.now(),20,20);
+//			System.out.println(id);
+//			Main.evp1.assignEventManager(id, "Manager1");
+//			Main.evp1.requestEvent("Tour Ibliz","0123456789",LocalDate.now(),20,20);
+
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		
 		launch(args);
+
 	}
 }
