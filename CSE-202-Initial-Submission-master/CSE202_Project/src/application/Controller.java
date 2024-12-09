@@ -42,7 +42,7 @@ public class Controller implements Initializable {
             stage.setTitle("Home");
 
         } catch (Exception er) {
-            System.out.println("Error in customerHomeBtn");
+//            System.out.println("Error in customerHomeBtn");
         }
     }
 
@@ -56,7 +56,7 @@ public class Controller implements Initializable {
             stage.show();
             stage.setTitle("Home");
         } catch (Exception ex) {
-            System.out.println("Error in employeeHomeBtn");
+//            System.out.println("Error in employeeHomeBtn");
         }
     }
 
@@ -72,7 +72,7 @@ public class Controller implements Initializable {
             stage.show();
             stage.setTitle("Home");
         } catch (Exception ex) {
-            System.out.println("Error in requestForCorporateEventBtn");
+//            System.out.println("Error in requestForCorporateEventBtn");
         }
     }
 
@@ -95,13 +95,13 @@ public class Controller implements Initializable {
         try {
 //            requestedEvents Arraylist a jabe
 
-//            System.out.println(eventTitleForRequestForCorporateEvent.getText() + eventDateForRequestForCorporateEvent.getValue() + customerContactForRequestForCorporateEvent.getText() + durationDaysForRequestForCorporateEvent.getText() + numberOfParticipantsForRequestForCorporateEvent.getText());
+////            System.out.println(eventTitleForRequestForCorporateEvent.getText() + eventDateForRequestForCorporateEvent.getValue() + customerContactForRequestForCorporateEvent.getText() + durationDaysForRequestForCorporateEvent.getText() + numberOfParticipantsForRequestForCorporateEvent.getText());
 //            String title=eventTitleForRequestForCorporateEvent.getText()
 //              Main.evp1.requestEvent(eventTitleForRequestForCorporateEvent.getText(),customerContactForRequestForCorporateEvent.getText(),eventDateForRequestForCorporateEvent.getValue(),);
-//            System.out.println(eventDateForRequestForCorporateEvent.getValue().getClass().getName());
+////            System.out.println(eventDateForRequestForCorporateEvent.getValue().getClass().getName());
 
         } catch (Exception er) {
-            System.out.println("Error in requestForCorporateEventSubmitBtn");
+//            System.out.println("Error in requestForCorporateEventSubmitBtn");
         }
     }
 
@@ -121,7 +121,7 @@ public class Controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-            System.out.println("Error in registerForTourBtn");
+//            System.out.println("Error in registerForTourBtn");
         }
     }
 
@@ -135,9 +135,9 @@ public class Controller implements Initializable {
     public void registerTourSubmitBtn(ActionEvent e) {
         try {
 //            Main.evp1.registerForTour();
-            System.out.println("Done");
+//            System.out.println("Done");
         } catch (Exception ex) {
-            System.out.println("Error in registerTourSubmitBtn");
+//            System.out.println("Error in registerTourSubmitBtn");
         }
     }
 
@@ -151,7 +151,7 @@ public class Controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {
-            System.out.println("Error in payBillBtn");
+//            System.out.println("Error in payBillBtn");
         }
     }
 
@@ -166,9 +166,9 @@ public class Controller implements Initializable {
 
     public void payBillSubmitBtnPayBill(ActionEvent e) {
         try {
-            System.out.println("Done");
+//            System.out.println("Done");
         } catch (Exception er) {
-            System.out.println("Error in payBillSubmitBtn");
+//            System.out.println("Error in payBillSubmitBtn");
         }
     }
 //    pay bill end
@@ -186,11 +186,11 @@ public class Controller implements Initializable {
             scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
             stage.setScene(scene);
             stage.show();
-            System.out.println("Done");
+//            System.out.println("Done");
             DataHandler.saveData(Main.evp1);
 
         } catch (Exception ex) {
-            System.out.println("Error in logOutBtn");
+//            System.out.println("Error in logOutBtn");
         }
     }
 
@@ -206,7 +206,7 @@ public class Controller implements Initializable {
             DataHandler.saveData(Main.evp1);
 
         } catch (Exception ex) {
-            System.out.println("Error in offerTourBtn");
+//            System.out.println("Error in offerTourBtn");
         }
     }
 
@@ -235,10 +235,10 @@ public class Controller implements Initializable {
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
                     massageBoxOfferBtn.setText("Offered tour successfully.");
-//            System.out.println(Main.evp1.getEvents());
+////            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
             massageBoxOfferBtn.setText("Something went wrong");
-            System.out.println("Error in offerTourPackageSubmitBtn");
+//            System.out.println("Error in offerTourPackageSubmitBtn");
         }
     }
 
@@ -265,7 +265,7 @@ public class Controller implements Initializable {
             stage.setMaximized(true);
             stage.setTitle("Manage Events");
         } catch (Exception e) {
-            System.out.println("Error in mangeEventsBtn");
+//            System.out.println("Error in mangeEventsBtn");
         }
     }
 
@@ -285,14 +285,14 @@ public class Controller implements Initializable {
 //            eventStatus.setText(Main.evp1.showRequestedEvents());
             eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
             messgaeBoxAcceptEvent.setText("Accepted Event.");
-//            System.out.println(eventIdAcceptEvent.getText());
+////            System.out.println(eventIdAcceptEvent.getText());
             if(Main.evp1.getRequestedEvents().size()<1){
                 requestedEventsList.getItems().clear();
                 requestedEventsList.getItems().add("No Event Found");
             }
             else{
                 for(Event e:Main.evp1.getRequestedEvents()){
-//                    System.out.println(e.toString());
+////                    System.out.println(e.toString());
                     requestedEventsList.getItems().add(e.toString());
                 }
             }
@@ -314,7 +314,7 @@ public class Controller implements Initializable {
             stage.setMaximized(true);
             stage.setTitle("Manage Tasks");
         } catch (Exception e) {
-            System.out.println("Error in manageTasksBtn");
+//            System.out.println("Error in manageTasksBtn");
         }
     }
 
@@ -353,7 +353,7 @@ public class Controller implements Initializable {
                     }
                 }
             } else if (startTaskRadioBtn.isSelected()) {
-//                System.out.println("Star Task");
+////                System.out.println("Star Task");
                 try{
                     Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task start successfully.");
@@ -371,12 +371,12 @@ public class Controller implements Initializable {
                     }
                 }
             } else if (endTaskRadioBtn.isSelected()) {
-//                System.out.println("End Btn");
+////                System.out.println("End Btn");
                 try{
                     Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task completed successfully.");
                 } catch (Exception e) {
-                    System.out.println(e.toString());
+//                    System.out.println(e.toString());
                 }
                 if(Main.evp1.getEvents().size()<1){
                     allEventsList.getItems().clear();
@@ -410,7 +410,7 @@ public class Controller implements Initializable {
             stage.setMaximized(true);
             stage.setTitle("Assign Event Manager");
         } catch (Exception e) {
-            System.out.println("Error in assignEventManagerBtn");
+//            System.out.println("Error in assignEventManagerBtn");
         }
     }
 
@@ -433,7 +433,7 @@ public class Controller implements Initializable {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error in assignEventManager");
+//            System.out.println("Error in assignEventManager");
         }
     }
 
@@ -459,13 +459,13 @@ public class Controller implements Initializable {
             else{
                 allEventsList.getItems().clear();
                 for(Event e:Main.evp1.getRequestedEvents()){
-//                    System.out.println(e.toString());
+////                    System.out.println(e.toString());
                     requestedEventsList.getItems().add(e.toString());
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("Error in initialize");
+//            System.out.println("Error in initialize");
         }
     }
 //    Aranna's code end
