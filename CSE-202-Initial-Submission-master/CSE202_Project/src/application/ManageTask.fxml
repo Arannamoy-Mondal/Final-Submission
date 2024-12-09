@@ -28,12 +28,12 @@
          <Label layoutX="429.0" layoutY="154.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event id:" />
          <Label layoutX="420.0" layoutY="203.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Task Title:" />
          <Button layoutX="557.0" layoutY="285.0" mnemonicParsing="false" onAction="#manageTasks" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Update" />
-         <Label alignment="CENTER" layoutY="364.0" prefHeight="18.0" prefWidth="1190.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event Status" />
+         <Label alignment="CENTER" layoutX="1.0" layoutY="335.0" prefHeight="18.0" prefWidth="1190.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event Status" />
          <TextField fx:id="taskDescriptionTaskManage" layoutX="513.0" layoutY="242.0" style="-fx-font-size: 16;" />
          <Label layoutX="370.0" layoutY="247.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Task Description:" />
          <Text fx:id="messgaeBoxTaskManage" layoutX="67.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1121.6000122070313" />
          <Text layoutX="-1.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Manage Tasks" textAlignment="CENTER" wrappingWidth="1190.4" />
-         <ListView fx:id="allEventsList" layoutX="67.0" layoutY="416.0" prefHeight="338.0" prefWidth="1058.0" />
+         <ListView fx:id="allEventsList" layoutX="26.0" layoutY="377.0" prefHeight="338.0" prefWidth="1135.0" />
       </children>
    </AnchorPane>
 </VBox>

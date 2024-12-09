@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="802.0" prefWidth="1195.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="874.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1195.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
         <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutY="71.0" prefHeight="26.0" prefWidth="1195.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as Employee" />
             <Button alignment="CENTER" layoutX="75.0" layoutY="65.0" mnemonicParsing="false" onAction="#employeeHomeBtn" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Menu" />
@@ -20,7 +20,7 @@
             <Button layoutX="565.0" layoutY="222.0" mnemonicParsing="false" onAction="#acceptEvent" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Accept" />
             <Label alignment="CENTER" layoutX="14.0" layoutY="296.0" prefHeight="26.0" prefWidth="1174.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Events Status" />
             <Text fx:id="messgaeBoxAcceptEvent" layoutX="10.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1174.4000000000003" />
-         <ListView fx:id="requestedEventsList" layoutX="59.0" layoutY="349.0" prefHeight="397.0" prefWidth="1084.0" />
+         <ListView fx:id="requestedEventsList" layoutX="13.0" layoutY="349.0" prefHeight="458.0" prefWidth="1167.0" />
         </children>
     </AnchorPane>
 </VBox>
