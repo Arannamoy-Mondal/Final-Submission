@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="center" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      <children>
+            <TextField fx:id="tourIdForRegisterForTour" layoutX="504.0" layoutY="107.0" />
+            <TextField fx:id="participantForRegisterForTour" layoutX="504.0" layoutY="144.0" />
+            <TextField fx:id="contactForRegisterForTour" layoutX="504.0" layoutY="179.0" />
+            <Button layoutX="201.0" layoutY="22.0" mnemonicParsing="false" onAction="#customerHomeBtn" text="Menu" />
+            <Button layoutX="539.0" layoutY="217.0" mnemonicParsing="false" text="Register" />
+            <Button layoutX="961.0" layoutY="22.0" mnemonicParsing="false" onAction="#logOutBtn" text="Logout" />
+            <Button layoutX="539.0" layoutY="217.0" mnemonicParsing="false" text="Register" />
+            <Label layoutX="426.0" layoutY="111.0" text="Tour Id" />
+            <Label layoutX="415.0" layoutY="148.0" text="Participants" />
+            <Label layoutX="425.0" layoutY="183.0" text="Contact" />
+            <ListView fx:id="allEventsList" layoutX="25.0" layoutY="303.0" prefHeight="418.0" prefWidth="1078.0" />
+            <Text layoutX="11.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Status" textAlignment="CENTER" wrappingWidth="1116.734375" />
+            <Text layoutX="309.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as customer" textAlignment="CENTER" wrappingWidth="539.9343872070315" />
+            <Text layoutX="346.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register For Tour" textAlignment="CENTER" wrappingWidth="464.5085906982422" />
+         </children>
+      </AnchorPane>
+</VBox>

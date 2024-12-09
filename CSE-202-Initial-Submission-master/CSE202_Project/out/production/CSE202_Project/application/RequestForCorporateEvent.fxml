@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="center" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      <children>
+            <Text layoutX="334.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event title" />
+            <Text layoutX="333.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of People" />
+            <Text layoutX="334.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration Days" />
+            <Text layoutX="334.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Contact" />
+            <Text layoutX="334.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event dates" />
+            <Text layoutX="470.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Logged in as Customer" />
+            <Button layoutX="255.0" layoutY="44.0" mnemonicParsing="false" onAction="#customerHomeBtn" style="-fx-background-color: #85c1e9;" text="Menu" />
+            <Button layoutX="720.0" layoutY="44.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #85c1e9;" text="Log Out" />
+            <Button layoutX="504.0" layoutY="290.0" mnemonicParsing="false" onAction="#requestForCorporateEventSubmitBtn" style="-fx-background-color: #ec7063;" text="Request" />
+            <TextField fx:id="eventTitleForRequestForCorporateEvent" layoutX="484.0" layoutY="107.0" promptText="Event Title" />
+            <TextField fx:id="customerContactForRequestForCorporateEvent" layoutX="484.0" layoutY="176.0" promptText="Your Contact" />
+            <TextField fx:id="durationDaysForRequestForCorporateEvent" layoutX="484.0" layoutY="213.0" promptText="Duration Day" />
+            <TextField fx:id="numberOfParticipantsForRequestForCorporateEvent" layoutX="484.0" layoutY="249.0" promptText="Number of People" />
+            <DatePicker fx:id="eventDateForRequestForCorporateEvent" layoutX="484.0" layoutY="139.0" prefHeight="26.0" prefWidth="150.0" promptText="Event Date" />
+         </children>
+      </AnchorPane>
+</VBox>

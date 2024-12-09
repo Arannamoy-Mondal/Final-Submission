@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="center" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+   <Button fx:id="offerTourPackageSubmitButton" layoutX="539.0" layoutY="259.0" mnemonicParsing="false" onAction="#offerTourPackageBtn" style="-fx-background-color: #87bdde;" text="Offer Tour Package" textAlignment="CENTER">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+   <Button layoutX="554.0" layoutY="297.0" mnemonicParsing="false" onAction="#mangeEventsBtn" style="-fx-background-color: #87bdde;" text="Manage Event">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+   <Button layoutX="531.0" layoutY="335.0" mnemonicParsing="false" onAction="#assignEventManagerBtn" style="-fx-background-color: #87bdde;" text="Assign Event Manager">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+   <Button layoutX="554.0" layoutY="373.0" mnemonicParsing="false" onAction="#manageTasksBtn" style="-fx-background-color: #87bdde;" text="Manage Tasks">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+   <Button layoutX="571.0" layoutY="410.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #eea96d;" text="Log Out">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+<!--   <Button layoutX="553.0" layoutY="496.0" mnemonicParsing="false" style="-fx-background-color: #e05f5f;" text="Reset All Data ">-->
+<!--      <font>-->
+<!--         <Font name="System Bold" size="12.0" />-->
+<!--      </font>-->
+<!--   </Button>-->
+   <Text layoutY="230.0" opacity="0.69" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as Employee" textAlignment="CENTER" wrappingWidth="1191.2">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Text>
+</children>
+   </AnchorPane>
+</VBox>
