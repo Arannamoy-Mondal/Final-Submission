@@ -462,6 +462,12 @@ public class Controller implements Initializable {
     @FXML
     TableColumn<Event,Integer> perPersonPriceForCustomer=new TableColumn<>();
 
+    @FXML
+    TableColumn<Event, Integer> eventNumOfParticipantsForCustomer=new TableColumn<>();
+
+    @FXML
+    TableColumn<Event, String> totalRegisteredForCustomer=new TableColumn<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
@@ -487,17 +493,14 @@ public class Controller implements Initializable {
                     requestedEventsList.getItems().add(e.getEventId()+" "+e.getEventManager()+" "+e.getEventTitle()+" "+" "+e.getEventDate()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
             }
-
+// Table view for customer start
             eventIdTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventId"));
             eventTitleTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
             eventDateTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
             eventDurationDaysForCustomer.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
             perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-
             eventTableViewForCustomer.setItems(eventList);
-
-
-//            eventTableViewForCustomer.getItems().addAll(new TourPackage("Tour Kaptai", LocalDate.now(),20,20,20000));
+//  Table view for customer end
 
         } catch (Exception e) {
 //            System.out.println("Error in initialize");
