@@ -20,10 +20,13 @@
             <Label layoutX="426.0" layoutY="111.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Tour Id" />
             <Label layoutX="407.0" layoutY="148.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Participants" />
             <Label layoutX="425.0" layoutY="183.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Contact" />
-            <ListView fx:id="allEventsList" layoutX="18.0" layoutY="319.0" prefHeight="460.0" prefWidth="1158.0" />
+            <ListView layoutX="18.0" layoutY="319.0" prefHeight="460.0" prefWidth="1158.0" />
             <Text layoutX="6.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event Status" textAlignment="CENTER" wrappingWidth="1182.33447265625" />
             <Text layoutX="327.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as customer" textAlignment="CENTER" wrappingWidth="539.9343872070315" />
             <Text layoutX="330.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Register For Tour" textAlignment="CENTER" wrappingWidth="533.3085784912109" />
          </children>
       </AnchorPane>
 </VBox>
+
+
+<!--        fx:id="allEventsList"-->

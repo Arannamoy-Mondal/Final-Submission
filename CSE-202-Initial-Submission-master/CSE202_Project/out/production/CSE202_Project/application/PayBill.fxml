@@ -30,7 +30,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <ListView fx:id="allEventsList" layoutX="40.0" layoutY="347.0" prefHeight="362.0" prefWidth="1066.0" />
+            <ListView layoutX="40.0" layoutY="347.0" prefHeight="362.0" prefWidth="1066.0" />
             <Text layoutX="11.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Event Status" textAlignment="CENTER" wrappingWidth="1115.1343994140625" />
             <Button fx:id="totalBillForPayBill" layoutX="493.0" layoutY="214.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" style="-fx-font-weight: bold; -fx-font-size: 16;" />
          <Text layoutX="279.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Pay Bill" textAlignment="CENTER" wrappingWidth="599.91748046875" />
@@ -39,3 +39,5 @@
          </children>
       </AnchorPane>
 </VBox>
+
+<!--        fx:id="allEventsList"-->
