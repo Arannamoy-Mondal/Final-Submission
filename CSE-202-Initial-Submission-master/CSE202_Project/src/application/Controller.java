@@ -1,6 +1,7 @@
 package application;
 
 import event.lib.DataHandler;
+import event.lib.Task;
 import event.lib.TourPackage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,8 +23,12 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import event.lib.Event;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class Controller implements Initializable {
     Pane root;
@@ -185,7 +191,7 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Log Out");
             alert.setContentText("Are you sure you want to log out?");
-            if(alert.showAndWait().get() == ButtonType.OK) {
+            if (alert.showAndWait().get() == ButtonType.OK) {
                 root = FXMLLoader.load(getClass().getResource("Home.fxml"));
                 stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                 scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
@@ -228,7 +234,8 @@ public class Controller implements Initializable {
     @FXML
     Button offerTourPackageSubmitButton = new Button("OfferTourPackage");
     @FXML
-    Text massageBoxOfferBtn=new Text();
+    Text massageBoxOfferBtn = new Text();
+
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
             String tourId = Main.evp1.offerTourPackage(
@@ -237,7 +244,7 @@ public class Controller implements Initializable {
                     Integer.parseInt(durationDaysForOfferTourPackage.getText()),
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
-                    massageBoxOfferBtn.setText("Offered tour successfully.");
+            massageBoxOfferBtn.setText("Offered tour successfully.");
 ////            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
             massageBoxOfferBtn.setText("Something went wrong");
@@ -258,6 +265,7 @@ public class Controller implements Initializable {
 //    Manage Events start
     @FXML
     ListView eventStatus = new ListView();
+
     public void mangeEventsBtn(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getResource("ManageEvent.fxml"));
@@ -281,6 +289,7 @@ public class Controller implements Initializable {
     ListView requestedEventsList = new ListView();
     @FXML
     ListView allEventsList = new ListView();
+
     public void acceptEvent(ActionEvent event) {
         try {
 
@@ -289,14 +298,13 @@ public class Controller implements Initializable {
             eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
             messgaeBoxAcceptEvent.setText("Accepted Event.");
 ////            System.out.println(eventIdAcceptEvent.getText());
-            if(Main.evp1.getRequestedEvents().size()<1){
+            if (Main.evp1.getRequestedEvents().size() < 1) {
                 requestedEventsList.getItems().add("No Event Found");
-            }
-            else{
-                for(Event e:Main.evp1.getRequestedEvents()){
+            } else {
+                for (Event e : Main.evp1.getRequestedEvents()) {
 ////                    System.out.println(e.toString());
 //                    requestedEventsList.getItems().add(e.toString());
-                    requestedEventsList.getItems().add(e.getEventId()+" "+e.getEventManager()+" "+e.getEventTitle()+" "+" "+e.getEventDate()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
+                    requestedEventsList.getItems().add(e.getEventId() + " " + e.getEventManager() + " " + e.getEventTitle() + " " + " " + e.getEventDate() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                 }
             }
         } catch (Exception e) {
@@ -339,57 +347,54 @@ public class Controller implements Initializable {
     public void manageTasks(ActionEvent event) {
         try {
             if (addTaskRadioBtn.isSelected()) {
-                try{
+                try {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                 } catch (Exception e) {
-                    System.out.println(eventIdTaskManage.getText()+" "+taskTitleTaskManage.getText()+" "+taskDescriptionTaskManage.getText());
+                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText(e.getMessage().toString());
                 }
-                if(Main.evp1.getEvents().size()<1){
+                if (Main.evp1.getEvents().size() < 1) {
                     allEventsList.getItems().clear();
                     allEventsList.getItems().add("No Event Found");
-                }
-                else{
+                } else {
                     allEventsList.getItems().clear();
-                    for(Event e:Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
+                    for (Event e : Main.evp1.getEvents()) {
+                        allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                     }
                 }
             } else if (startTaskRadioBtn.isSelected()) {
 ////                System.out.println("Star Task");
-                try{
+                try {
                     Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task start successfully.");
                 } catch (Exception e) {
                     messgaeBoxTaskManage.setText(e.toString());
                 }
-                if(Main.evp1.getEvents().size()<1){
+                if (Main.evp1.getEvents().size() < 1) {
                     allEventsList.getItems().clear();
                     allEventsList.getItems().add("No Event Found");
-                }
-                else{
+                } else {
                     allEventsList.getItems().clear();
-                    for(Event e:Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
+                    for (Event e : Main.evp1.getEvents()) {
+                        allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                     }
                 }
             } else if (endTaskRadioBtn.isSelected()) {
 ////                System.out.println("End Btn");
-                try{
+                try {
                     Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task completed successfully.");
                 } catch (Exception e) {
 //                    System.out.println(e.toString());
                 }
-                if(Main.evp1.getEvents().size()<1){
+                if (Main.evp1.getEvents().size() < 1) {
                     allEventsList.getItems().clear();
                     allEventsList.getItems().add("No Event Found");
-                }
-                else{
+                } else {
                     allEventsList.getItems().clear();
-                    for(Event e:Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
+                    for (Event e : Main.evp1.getEvents()) {
+                        allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                     }
                 }
             } else {
@@ -426,15 +431,7 @@ public class Controller implements Initializable {
     public void assignEventManager(ActionEvent event) {
         try {
             Main.evp1.assignEventManager(eventIdAssignEventManager.getText(), managerNameAssignEventManager.getText());
-            if(Main.evp1.getEvents().size()<1){
-                allEventsList.getItems().add("No Event Found");
-            }
-            else{
-                allEventsList.getItems().clear();
-                for(Event e:Main.evp1.getEvents()) {
-                    allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
-                }
-            }
+            tableRefresh();
         } catch (Exception e) {
 //            System.out.println("Error in assignEventManager");
         }
@@ -442,55 +439,90 @@ public class Controller implements Initializable {
 
     //    Assign Event manager end
 
+
+    // Table view for customer start
     @FXML
-    TableView<TourPackage> eventTableViewForCustomer=new TableView<>();
+    TableView<TourPackage> eventTableViewForCustomer = new TableView<>();
 
     @FXML
-    TableColumn<TourPackage, String> eventIdTableViewForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, String> eventIdTableViewForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, String> eventTitleTableViewForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, String> eventTitleTableViewForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, LocalDate> eventDateTableViewForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, LocalDate> eventDateTableViewForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, Integer> eventDurationDaysForCustomer =new TableColumn<>();
+    TableColumn<TourPackage, Integer> eventDurationDaysForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage,Integer> perPersonPriceForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, Integer> perPersonPriceForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, Integer> eventNumOfParticipantsForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, Integer> eventNumOfParticipantsForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, String> totalRegisteredForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, String> totalRegisteredForCustomer = new TableColumn<>();
+
+    // Table view for customer end
+
+
+    //  Table view for employee start
+    @FXML
+    TableView<Event> eventTableViewForEmployee = new TableView<>();
+
+    @FXML
+    TableColumn<Event, String> eventIdTableViewForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, String> eventTitleTableViewForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, LocalDate> eventDateTableViewForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, Integer> eventDurationDaysForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, Integer> perPersonPriceForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, Integer> eventNumOfParticipantsForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, ArrayList<Task>> allTaskListForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, String> eventManagerForEmployee = new TableColumn<>();
+
+    //  Table view for employee end
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try{
+        tableRefresh();
+    }
 
-            ObservableList<TourPackage> eventList = FXCollections.observableArrayList();
-            if(Main.evp1.getEvents().size()<1){
+
+    public void tableRefresh() {
+        try {
+            System.out.println("table refresh called");
+            ObservableList<TourPackage> eventListForCustomer = FXCollections.observableArrayList();
+            ObservableList<Event> eventListForEmployee = FXCollections.observableArrayList();
+            if (Main.evp1.getEvents().size() < 1) {
                 allEventsList.getItems().add("No Event Found");
-                eventList.clear();
-            }
-            else{
+                eventListForCustomer.clear();
+            } else {
                 allEventsList.getItems().clear();
-                for(Event e:Main.evp1.getEvents()) {
-                    if(e instanceof TourPackage){
-                        eventList.add((TourPackage) e);
+                eventTableViewForCustomer.getItems().clear();
+                eventTableViewForEmployee.getItems().clear();
+                for (Event e : Main.evp1.getEvents()) {
+                    if (e instanceof TourPackage) {
+                        eventTableViewForCustomer.getItems().add((TourPackage) e);
                     }
-                    allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
+                    eventTableViewForEmployee.getItems().add(e);
+                    allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                 }
             }
-            if(Main.evp1.getRequestedEvents().size()<1){
+            if (Main.evp1.getRequestedEvents().size() < 1) {
                 requestedEventsList.getItems().add("No Event Found");
-            }
-            else{
+            } else {
                 allEventsList.getItems().clear();
-                for(Event e:Main.evp1.getRequestedEvents()){
-                    requestedEventsList.getItems().add(e.getEventId()+" "+e.getEventManager()+" "+e.getEventTitle()+" "+" "+e.getEventDate()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
+                for (Event e : Main.evp1.getRequestedEvents()) {
+                    requestedEventsList.getItems().add(e.getEventId() + " " + e.getEventManager() + " " + e.getEventTitle() + " " + " " + e.getEventDate() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                 }
             }
 // Table view for customer start
@@ -501,8 +533,80 @@ public class Controller implements Initializable {
             perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
             totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
             eventNumOfParticipantsForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-            eventTableViewForCustomer.setItems(eventList);
+            eventTableViewForCustomer.setItems(eventListForCustomer);
 //  Table view for customer end
+
+//  Table view for employee start
+            eventTableViewForEmployee.setEditable(true);
+            eventIdTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+            eventIdTableViewForEmployee.setEditable(false);
+
+            eventTitleTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+            eventTitleTableViewForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
+            eventTitleTableViewForEmployee.setEditable(true);
+
+            eventDateTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+            eventDurationDaysForEmployee.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+
+            perPersonPriceForEmployee.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+            perPersonPriceForEmployee.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            perPersonPriceForEmployee.setEditable(true);
+
+            eventNumOfParticipantsForEmployee.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+            eventNumOfParticipantsForCustomer.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            eventNumOfParticipantsForCustomer.setEditable(true);
+
+
+            eventManagerForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventManager"));
+            eventManagerForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
+            eventManagerForEmployee.setEditable(true);
+
+            eventListForEmployee.addAll(Main.evp1.getEvents());
+
+            eventTitleTableViewForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, String> event) -> {
+                try {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation.");
+                    alert.setContentText("Are you want to change the information?");
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        event.getRowValue().setEventTitle(event.getNewValue());
+                    }
+                } catch (Exception ex) {
+//            System.out.println("Error in logOutBtn");
+                }
+
+            });
+
+            perPersonPriceForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, Integer> event) -> {
+                try {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation.");
+                    alert.setContentText("Are you want to change the information?");
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        event.getRowValue().setUnitPrice(event.getNewValue());
+                    }
+                } catch (Exception ex) {
+//            System.out.println("Error in logOutBtn");
+                }
+            });
+
+            eventNumOfParticipantsForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event,Integer>event)->{
+
+                try {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation.");
+                    alert.setContentText("Are you want to change the information?");
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        event.getRowValue().setNumOfParticipants(event.getNewValue());
+                    }
+                } catch (Exception ex) {
+//            System.out.println("Error in logOutBtn");
+                }
+            });
+
+
+
+//  Table view for employee end
 
         } catch (Exception e) {
 //            System.out.println("Error in initialize");
@@ -511,7 +615,7 @@ public class Controller implements Initializable {
 //    Aranna's code end
 
     public void searchForTourBtn(ActionEvent event) {
-        try{
+        try {
             root = FXMLLoader.load(getClass().getResource("SearchEvent.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //        scene = new Scene(root);
