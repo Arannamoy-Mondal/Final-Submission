@@ -181,12 +181,19 @@ public class Controller implements Initializable {
 //    log out start
     public void logOutBtn(ActionEvent e) {
         try {
-            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-            stage.setScene(scene);
-            stage.show();
-//            System.out.println("Done");
+//            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//            scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+//            stage.setScene(scene);
+//            stage.show();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Log Out");
+            alert.setContentText("Are you sure you want to log out?");
+            if(alert.showAndWait().get() == ButtonType.OK) {
+                //            stage=(Stage)scene_pane.getScene().getWindow();
+                System.out.println("LogOut");
+                stage.close();
+            }
             DataHandler.saveData(Main.evp1);
 
         } catch (Exception ex) {
