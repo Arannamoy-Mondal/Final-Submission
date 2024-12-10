@@ -1,6 +1,8 @@
 package application;
 	
+import java.awt.*;
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.jar.JarOutputStream;
 
 import event.lib.DataHandler;
@@ -27,16 +29,15 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setMaximized(true);
-			primaryStage.setOnCloseRequest(event->{
+			primaryStage.setOnCloseRequest(event-> {
 				event.consume();
 				try {
+					logOut(primaryStage);
 					DataHandler.saveData(evp1);
 					System.out.println(evp1.getEvents().toString());
-				}
-				catch(Exception e) {
+				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-				logOut(primaryStage);
 			});
 			
 		} catch(Exception e) {
