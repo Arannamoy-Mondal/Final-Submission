@@ -29,6 +29,13 @@ public class Main extends Application {
 			primaryStage.setMaximized(true);
 			primaryStage.setOnCloseRequest(event->{
 				event.consume();
+				try {
+					DataHandler.saveData(evp1);
+					System.out.println(evp1.getEvents().toString());
+				}
+				catch(Exception e) {
+					System.out.println(e.getMessage());
+				}
 				logOut(primaryStage);
 			});
 			
@@ -38,11 +45,9 @@ public class Main extends Application {
 	}
 	public void logOut(Stage stage) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Log Out");
-		alert.setContentText("Are you sure you want to log out?");
+		alert.setTitle("Exit");
+		alert.setContentText("Are you sure you want to exit?");
 		if(alert.showAndWait().get() == ButtonType.OK) {
-			//            stage=(Stage)scene_pane.getScene().getWindow();
-			System.out.println("LogOut");
 			stage.close();
 		}
 	}
@@ -50,12 +55,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		try {
 			evp1=DataHandler.loadData();
-			String id = Main.evp1.offerTourPackage("Tour Kaptai", LocalDate.now(), 20, 20, 2000);
-//			Main.evp1.addEventTask(id, "Boarding", "DAC"); // given error when add task error type java.util.ArrayList.add(Object)
-//			System.out.println(id);
-//			Main.evp1.assignEventManager(id, "Manager1");
-//			Main.evp1.requestEvent("Tour Ibliz","0123456789",LocalDate.now(),20,20);
-
+			System.out.println(evp1.getEvents().toString());
 		}catch(Exception e){
 			System.out.println(e);
 		}

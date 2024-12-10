@@ -15,15 +15,15 @@
                 prefHeight="845.0" prefWidth="1208.0" xmlns="http://javafx.com/javafx/23.0.1"
                 xmlns:fx="http://javafx.com/fxml/1">
         <children>
-            <TableView layoutX="250.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomer">
+            <TableView layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomer">
                 <columns>
                     <TableColumn prefWidth="150" text="Id" fx:id="eventIdTableViewForCustomer"/>
                     <TableColumn prefWidth="150" text="Event Title" fx:id="eventTitleTableViewForCustomer"/>
                     <TableColumn prefWidth="150" text="Event Date" fx:id="eventDateTableViewForCustomer"/>
                     <TableColumn prefWidth="150" text="Event Durations Days" fx:id="eventDurationDaysForCustomer" />
                     <TableColumn prefWidth="150" text="Per Person Price" fx:id="perPersonPriceForCustomer"/>
-                    <TableColumn prefWidth="150" text="Per Person Price" fx:id="eventNumOfParticipantsForCustomer"/>
-                    <TableColumn prefWidth="150" text="Per Person Price" fx:id="totalRegisteredForCustomer"/>
+                    <TableColumn prefWidth="150" text="Total Participants" fx:id="eventNumOfParticipantsForCustomer"/>
+                    <TableColumn prefWidth="150" text="Registered Participants" fx:id="totalRegisteredForCustomer"/>
                 </columns>
             </TableView>
             <Button layoutX="215.0" layoutY="81.0" mnemonicParsing="false"

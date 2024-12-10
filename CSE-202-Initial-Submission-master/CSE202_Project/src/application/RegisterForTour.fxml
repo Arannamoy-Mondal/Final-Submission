@@ -24,15 +24,15 @@
             <Label layoutX="425.0" layoutY="183.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Contact" />
 <!--            <ListView layoutX="18.0" layoutY="319.0" prefHeight="460.0" prefWidth="1158.0" />-->
 
-          <TableView layoutX="250.0" layoutY="327.0" prefHeight="348.0" prefWidth="750" fx:id="eventTableViewForCustomer">
+          <TableView layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomer">
               <columns>
                   <TableColumn prefWidth="150" text="Id" fx:id="eventIdTableViewForCustomer"/>
                   <TableColumn prefWidth="150" text="Event Title" fx:id="eventTitleTableViewForCustomer"/>
                   <TableColumn prefWidth="150" text="Event Date" fx:id="eventDateTableViewForCustomer"/>
                   <TableColumn prefWidth="150" text="Event Durations Days" fx:id="eventDurationDaysForCustomer" />
                   <TableColumn prefWidth="150" text="Per Person Price" fx:id="perPersonPriceForCustomer"/>
-                  <TableColumn prefWidth="150" text="Per Person Price" fx:id="eventNumOfParticipantsForCustomer"/>
-                  <TableColumn prefWidth="150" text="Per Person Price" fx:id="totalRegisteredForCustomer"/>
+                  <TableColumn prefWidth="150" text="Total Participants" fx:id="eventNumOfParticipantsForCustomer"/>
+                  <TableColumn prefWidth="150" text="Registered Participants" fx:id="totalRegisteredForCustomer"/>
               </columns>
           </TableView>
             <Text layoutX="6.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event Status" textAlignment="CENTER" wrappingWidth="1182.33447265625" />

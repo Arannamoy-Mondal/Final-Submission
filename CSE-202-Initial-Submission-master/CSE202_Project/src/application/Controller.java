@@ -192,8 +192,6 @@ public class Controller implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-            DataHandler.saveData(Main.evp1);
-
         } catch (Exception ex) {
 //            System.out.println("Error in logOutBtn");
         }
@@ -445,42 +443,44 @@ public class Controller implements Initializable {
     //    Assign Event manager end
 
     @FXML
-    TableView<Event> eventTableViewForCustomer=new TableView<>();
+    TableView<TourPackage> eventTableViewForCustomer=new TableView<>();
 
     @FXML
-    TableColumn<Event, String> eventIdTableViewForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, String> eventIdTableViewForCustomer=new TableColumn<>();
 
     @FXML
-    TableColumn<Event, String> eventTitleTableViewForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, String> eventTitleTableViewForCustomer=new TableColumn<>();
 
     @FXML
-    TableColumn<Event, LocalDate> eventDateTableViewForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, LocalDate> eventDateTableViewForCustomer=new TableColumn<>();
 
     @FXML
-    TableColumn<Event, Integer> eventDurationDaysForCustomer =new TableColumn<>();
+    TableColumn<TourPackage, Integer> eventDurationDaysForCustomer =new TableColumn<>();
 
     @FXML
-    TableColumn<Event,Integer> perPersonPriceForCustomer=new TableColumn<>();
+    TableColumn<TourPackage,Integer> perPersonPriceForCustomer=new TableColumn<>();
 
     @FXML
-    TableColumn<Event, Integer> eventNumOfParticipantsForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, Integer> eventNumOfParticipantsForCustomer=new TableColumn<>();
 
     @FXML
-    TableColumn<Event, String> totalRegisteredForCustomer=new TableColumn<>();
+    TableColumn<TourPackage, String> totalRegisteredForCustomer=new TableColumn<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
 
-            ObservableList<Event> eventList = FXCollections.observableArrayList();
+            ObservableList<TourPackage> eventList = FXCollections.observableArrayList();
             if(Main.evp1.getEvents().size()<1){
                 allEventsList.getItems().add("No Event Found");
                 eventList.clear();
             }
             else{
                 allEventsList.getItems().clear();
-                eventList.addAll(Main.evp1.getEvents());
                 for(Event e:Main.evp1.getEvents()) {
+                    if(e instanceof TourPackage){
+                        eventList.add((TourPackage) e);
+                    }
                     allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
             }
@@ -499,6 +499,8 @@ public class Controller implements Initializable {
             eventDateTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
             eventDurationDaysForCustomer.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
             perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+            totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
+            eventNumOfParticipantsForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
             eventTableViewForCustomer.setItems(eventList);
 //  Table view for customer end
 
