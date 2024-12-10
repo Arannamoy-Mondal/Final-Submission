@@ -8,6 +8,8 @@ import event.lib.EventPlanner;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -25,12 +27,26 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setMaximized(true);
+			primaryStage.setOnCloseRequest(event->{
+				event.consume();
+				logOut(primaryStage);
+			});
 			
 		} catch(Exception e) {
 			System.out.println();
 		}
 	}
-	
+	public void logOut(Stage stage) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Log Out");
+		alert.setContentText("Are you sure you want to log out?");
+		if(alert.showAndWait().get() == ButtonType.OK) {
+			//            stage=(Stage)scene_pane.getScene().getWindow();
+			System.out.println("LogOut");
+			stage.close();
+		}
+	}
+
 	public static void main(String[] args) {
 		try {
 			evp1=DataHandler.loadData();

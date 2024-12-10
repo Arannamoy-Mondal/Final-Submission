@@ -466,4 +466,19 @@ public class Controller implements Initializable {
         }
     }
 //    Aranna's code end
+
+    public void searchForTourBtn(ActionEvent event) {
+        try{
+            root = FXMLLoader.load(getClass().getResource("SearchEvent.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+            scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setTitle("Search Event");
+
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
 }
