@@ -9,9 +9,9 @@
    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
       <children>
       <Button layoutX="468.0" layoutY="210.0" mnemonicParsing="false" onAction="#requestForCorporateEventBtn" prefHeight="37.0" prefWidth="263.0" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Request For Corporate Event" />
-      <Button layoutX="514.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerForTourBtn" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Register For Event" />
-      <Button layoutX="554.0" layoutY="304.0" mnemonicParsing="false" onAction="#payBillBtn" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Pay Bill" />
-      <Button layoutX="562.0" layoutY="350.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #FF5733; -fx-font-weight: bold; -fx-font-size: 16;" text="Logout" />
+      <Button layoutX="528.0" layoutY="255.0" mnemonicParsing="false" onAction="#registerForTourBtn" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Register For Event" />
+      <Button layoutX="556.0" layoutY="303.0" mnemonicParsing="false" onAction="#payBillBtn" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Pay Bill" />
+      <Button layoutX="565.0" layoutY="350.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #FF5733; -fx-font-weight: bold; -fx-font-size: 16;" text="Logout" />
       <Text layoutX="15.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Logged in as Customer" textAlignment="CENTER" wrappingWidth="1170.9366760253906" />
    </children>
 </AnchorPane>
