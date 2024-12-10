@@ -287,13 +287,13 @@ public class Controller implements Initializable {
             messgaeBoxAcceptEvent.setText("Accepted Event.");
 ////            System.out.println(eventIdAcceptEvent.getText());
             if(Main.evp1.getRequestedEvents().size()<1){
-                requestedEventsList.getItems().clear();
                 requestedEventsList.getItems().add("No Event Found");
             }
             else{
                 for(Event e:Main.evp1.getRequestedEvents()){
 ////                    System.out.println(e.toString());
-                    requestedEventsList.getItems().add(e.toString());
+//                    requestedEventsList.getItems().add(e.toString());
+                    requestedEventsList.getItems().add(e.getEventId()+" "+e.getEventManager()+" "+e.getEventTitle()+" "+" "+e.getEventDate()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
             }
         } catch (Exception e) {
@@ -340,7 +340,8 @@ public class Controller implements Initializable {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                 } catch (Exception e) {
-                    messgaeBoxTaskManage.setText(e.toString());
+                    System.out.println(eventIdTaskManage.getText()+" "+taskTitleTaskManage.getText()+" "+taskDescriptionTaskManage.getText());
+                    messgaeBoxTaskManage.setText(e.getMessage().toString());
                 }
                 if(Main.evp1.getEvents().size()<1){
                     allEventsList.getItems().clear();
@@ -349,7 +350,7 @@ public class Controller implements Initializable {
                 else{
                     allEventsList.getItems().clear();
                     for(Event e:Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.toString());
+                        allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                     }
                 }
             } else if (startTaskRadioBtn.isSelected()) {
@@ -367,7 +368,7 @@ public class Controller implements Initializable {
                 else{
                     allEventsList.getItems().clear();
                     for(Event e:Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.toString());
+                        allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                     }
                 }
             } else if (endTaskRadioBtn.isSelected()) {
@@ -385,7 +386,7 @@ public class Controller implements Initializable {
                 else{
                     allEventsList.getItems().clear();
                     for(Event e:Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.toString());
+                        allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                     }
                 }
             } else {
@@ -423,13 +424,12 @@ public class Controller implements Initializable {
         try {
             Main.evp1.assignEventManager(eventIdAssignEventManager.getText(), managerNameAssignEventManager.getText());
             if(Main.evp1.getEvents().size()<1){
-                allEventsList.getItems().clear();
                 allEventsList.getItems().add("No Event Found");
             }
             else{
                 allEventsList.getItems().clear();
                 for(Event e:Main.evp1.getEvents()) {
-                    allEventsList.getItems().add(e.toString());
+                    allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
             }
         } catch (Exception e) {
@@ -443,24 +443,21 @@ public class Controller implements Initializable {
         try{
 
             if(Main.evp1.getEvents().size()<1){
-                allEventsList.getItems().clear();
                 allEventsList.getItems().add("No Event Found");
             }
             else{
                 allEventsList.getItems().clear();
                 for(Event e:Main.evp1.getEvents()) {
-                    allEventsList.getItems().add(e.toString());
+                    allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
             }
             if(Main.evp1.getRequestedEvents().size()<1){
-                requestedEventsList.getItems().clear();
                 requestedEventsList.getItems().add("No Event Found");
             }
             else{
                 allEventsList.getItems().clear();
                 for(Event e:Main.evp1.getRequestedEvents()){
-////                    System.out.println(e.toString());
-                    requestedEventsList.getItems().add(e.toString());
+                    requestedEventsList.getItems().add(e.getEventId()+" "+e.getEventManager()+" "+e.getEventTitle()+" "+" "+e.getEventDate()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
             }
 
