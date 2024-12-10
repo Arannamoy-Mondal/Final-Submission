@@ -15,8 +15,8 @@
                <columns>
                   <TableColumn prefWidth="103.19998931884766" text="Column X" />
                </columns></TableView>
-            <Button layoutX="215.0" layoutY="81.0" mnemonicParsing="false" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #0284c7;" text="Menu" onAction="#customerHomeBtn"/>
-            <Button layoutX="935.0" layoutY="81.0" mnemonicParsing="false" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #FF5733;" text="Logout" onAction="#logOutBtn"/>
+            <Button layoutX="215.0" layoutY="81.0" mnemonicParsing="false" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #0284c7;" text="Menu" />
+            <Button layoutX="935.0" layoutY="81.0" mnemonicParsing="false" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #FF5733;" text="Logout" />
             <Button layoutX="579.0" layoutY="230.0" mnemonicParsing="false" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Search" />
             <Label layoutX="569.0" layoutY="285.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event Status" />
             <Label layoutX="542.0" layoutY="85.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as Customer" />
