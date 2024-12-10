@@ -1,17 +1,19 @@
 package application;
 
 import event.lib.DataHandler;
+import event.lib.TourPackage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -19,7 +21,6 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import event.lib.Event;
 
@@ -181,18 +182,15 @@ public class Controller implements Initializable {
 //    log out start
     public void logOutBtn(ActionEvent e) {
         try {
-//            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-//            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//            scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-//            stage.setScene(scene);
-//            stage.show();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Log Out");
             alert.setContentText("Are you sure you want to log out?");
             if(alert.showAndWait().get() == ButtonType.OK) {
-                //            stage=(Stage)scene_pane.getScene().getWindow();
-                System.out.println("LogOut");
-                stage.close();
+                root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+                stage.setScene(scene);
+                stage.show();
             }
             DataHandler.saveData(Main.evp1);
 
@@ -445,15 +443,37 @@ public class Controller implements Initializable {
     }
 
     //    Assign Event manager end
+
+    @FXML
+    TableView<Event> eventTableViewForCustomer=new TableView<>();
+
+    @FXML
+    TableColumn<Event, String> eventIdTableViewForCustomer=new TableColumn<>();
+
+    @FXML
+    TableColumn<Event, String> eventTitleTableViewForCustomer=new TableColumn<>();
+
+    @FXML
+    TableColumn<Event, LocalDate> eventDateTableViewForCustomer=new TableColumn<>();
+
+    @FXML
+    TableColumn<Event, Integer> eventDurationDaysForCustomer =new TableColumn<>();
+
+    @FXML
+    TableColumn<Event,Integer> perPersonPriceForCustomer=new TableColumn<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
 
+            ObservableList<Event> eventList = FXCollections.observableArrayList();
             if(Main.evp1.getEvents().size()<1){
                 allEventsList.getItems().add("No Event Found");
+                eventList.clear();
             }
             else{
                 allEventsList.getItems().clear();
+                eventList.addAll(Main.evp1.getEvents());
                 for(Event e:Main.evp1.getEvents()) {
                     allEventsList.getItems().add(e.getEventId()+" "+e.getEventTitle()+" "+e.getEventDate()+" "+e.getEventManager()+" "+e.getCustomerContact()+" "+e.getDurationInDays()+" "+e.getNumOfParticipants());
                 }
@@ -468,6 +488,17 @@ public class Controller implements Initializable {
                 }
             }
 
+            eventIdTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+            eventTitleTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+            eventDateTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+            eventDurationDaysForCustomer.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+            perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+
+            eventTableViewForCustomer.setItems(eventList);
+
+
+//            eventTableViewForCustomer.getItems().addAll(new TourPackage("Tour Kaptai", LocalDate.now(),20,20,20000));
+
         } catch (Exception e) {
 //            System.out.println("Error in initialize");
         }
@@ -481,7 +512,7 @@ public class Controller implements Initializable {
 //        scene = new Scene(root);
             scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
             stage.setScene(scene);
-            stage.setMaximized(true);
+            stage.show();
             stage.setTitle("Search Event");
 
         } catch (Exception e) {
