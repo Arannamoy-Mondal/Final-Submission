@@ -56,6 +56,10 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		try {
 			evp1=DataHandler.loadData();
+			if(evp1==null) {
+				evp1=new EventPlanner("evp1");
+			}
+			evp1.offerTourPackage("Tour Venus",LocalDate.now(),20,20,50000);
 			System.out.println(evp1.getEvents().toString());
 		}catch(Exception e){
 			System.out.println(e);

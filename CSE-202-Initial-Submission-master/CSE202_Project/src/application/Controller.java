@@ -393,8 +393,9 @@ public class Controller implements Initializable {
     TextField taskTitleTaskManage;
     @FXML
     TextField taskDescriptionTaskManage;
+
     @FXML
-    Text messgaeBoxTaskManage;
+    Button messgaeBoxTaskManage;
 
     public void manageTasks(ActionEvent event) {
         try {
@@ -406,15 +407,7 @@ public class Controller implements Initializable {
                     System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText(e.getMessage().toString());
                 }
-                if (Main.evp1.getEvents().size() < 1) {
-                    allEventsList.getItems().clear();
-                    allEventsList.getItems().add("No Event Found");
-                } else {
-                    allEventsList.getItems().clear();
-                    for (Event e : Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
-                    }
-                }
+                tableRefresh();
             } else if (startTaskRadioBtn.isSelected()) {
 ////                System.out.println("Star Task");
                 try {
@@ -423,15 +416,7 @@ public class Controller implements Initializable {
                 } catch (Exception e) {
                     messgaeBoxTaskManage.setText(e.toString());
                 }
-                if (Main.evp1.getEvents().size() < 1) {
-                    allEventsList.getItems().clear();
-                    allEventsList.getItems().add("No Event Found");
-                } else {
-                    allEventsList.getItems().clear();
-                    for (Event e : Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
-                    }
-                }
+                tableRefresh();
             } else if (endTaskRadioBtn.isSelected()) {
 ////                System.out.println("End Btn");
                 try {
@@ -440,15 +425,7 @@ public class Controller implements Initializable {
                 } catch (Exception e) {
 //                    System.out.println(e.toString());
                 }
-                if (Main.evp1.getEvents().size() < 1) {
-                    allEventsList.getItems().clear();
-                    allEventsList.getItems().add("No Event Found");
-                } else {
-                    allEventsList.getItems().clear();
-                    for (Event e : Main.evp1.getEvents()) {
-                        allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
-                    }
-                }
+                tableRefresh();
             } else {
                 messgaeBoxTaskManage.setText("Please select one of the following actions: Add task, Start task, End task.");
             }
