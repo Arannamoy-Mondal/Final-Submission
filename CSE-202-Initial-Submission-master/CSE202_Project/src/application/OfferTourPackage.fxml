@@ -61,7 +61,7 @@
             <TextField fx:id="numberOfParticipantsForOfferTourPackage" layoutX="502.0" layoutY="392.0" style="-fx-font-size: 16;" />
             <TextField fx:id="durationDaysForOfferTourPackage" layoutX="501.0" layoutY="340.0" style="-fx-font-size: 16;" />
             <DatePicker fx:id="eventDateForOfferTourPackage" layoutX="500.0" layoutY="279.0" prefHeight="37.0" prefWidth="199.0" style="-fx-font-size: 16;" />
-            <Text fx:id="massageBoxOfferBtn" layoutX="381.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         <Button fx:id="massageBoxOfferBtn" layoutX="-3.0" layoutY="159.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="1138.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Button" visible="false" />
          </children>
       </AnchorPane>
 </VBox>

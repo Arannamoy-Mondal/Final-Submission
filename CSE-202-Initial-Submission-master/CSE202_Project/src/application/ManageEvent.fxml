@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="874.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1195.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="874.0" prefWidth="1316.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1303.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="71.0" prefHeight="26.0" prefWidth="1195.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as Employee" />
-            <Button alignment="CENTER" layoutX="75.0" layoutY="65.0" mnemonicParsing="false" onAction="#employeeHomeBtn" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Menu" />
-            <Button layoutX="1052.0" layoutY="66.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;" text="Log Out" />
-            <Text layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Accept Requested Event" textAlignment="CENTER" wrappingWidth="1195.2000000000005" />
-            <TextField fx:id="eventIdAcceptEvent" layoutX="519.0" layoutY="168.0" style="-fx-font-size: 16;" />
-            <Label layoutX="441.0" layoutY="173.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Event id:" />
-            <Button layoutX="565.0" layoutY="222.0" mnemonicParsing="false" onAction="#acceptEvent" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Accept" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="296.0" prefHeight="26.0" prefWidth="1174.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Events Status" />
-            <Text fx:id="messgaeBoxAcceptEvent" layoutX="10.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1174.4000000000003" />
-         <ListView fx:id="requestedEventsList" layoutX="13.0" layoutY="349.0" prefHeight="458.0" prefWidth="1167.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="73.0" prefHeight="26.0" prefWidth="1195.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as Employee" />
+            <Button alignment="CENTER" layoutX="130.0" layoutY="67.0" mnemonicParsing="false" onAction="#employeeHomeBtn" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Menu" />
+            <Button layoutX="1107.0" layoutY="68.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;" text="Log Out" />
+            <Text layoutX="55.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Accept Requested Event" textAlignment="CENTER" wrappingWidth="1195.2000000000005" />
+            <TextField fx:id="eventIdAcceptEvent" layoutX="554.0" layoutY="189.0" style="-fx-font-size: 16;" />
+            <Label layoutX="469.0" layoutY="194.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Event id:" />
+            <Button layoutX="776.0" layoutY="188.0" mnemonicParsing="false" onAction="#acceptEvent" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Accept" />
+            <Label alignment="CENTER" layoutX="9.0" layoutY="235.0" prefHeight="26.0" prefWidth="1286.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Events Status" />
+         <ButtonBar layoutX="34.0" layoutY="185.0" prefHeight="40.0" prefWidth="200.0" />
+         <Button fx:id="messgaeBoxAcceptEvent" visible="false" layoutX="4.0" layoutY="147.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1297.0" text="Button" />
+            <TableView fx:id="eventTableViewForEmployee" layoutX="16.0" layoutY="275.0" prefHeight="453.0" prefWidth="1274.0">
+                <columns>
+                    <TableColumn fx:id="eventIdTableViewForEmployee" prefWidth="150" text="Id" />
+                    <TableColumn fx:id="eventTitleTableViewForEmployee" prefWidth="150" text="Event Title" />
+                    <TableColumn fx:id="eventDateTableViewForEmployee" prefWidth="150" text="Event Date" />
+                    <TableColumn fx:id="eventManagerForEmployee" prefWidth="150" text="Manager" />
+                    <TableColumn fx:id="eventDurationDaysForEmployee" prefWidth="150" text="Event Durations Days" />
+                    <TableColumn fx:id="perPersonPriceForEmployee" prefWidth="150" text="Per Person Price" />
+                    <TableColumn fx:id="eventNumOfParticipantsForEmployee" prefWidth="150" text="Total Participants" />
+                    <TableColumn fx:id="allTaskListForEmployee" prefWidth="150" text="Registered Participants" />
+                </columns>
+            </TableView>
         </children>
     </AnchorPane>
 </VBox>

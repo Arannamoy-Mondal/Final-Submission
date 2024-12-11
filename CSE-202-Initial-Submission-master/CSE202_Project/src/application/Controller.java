@@ -272,7 +272,7 @@ public class Controller implements Initializable {
     @FXML
     Button offerTourPackageSubmitButton = new Button("OfferTourPackage");
     @FXML
-    Text massageBoxOfferBtn = new Text();
+    Button massageBoxOfferBtn = new Button();
 
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
@@ -283,9 +283,13 @@ public class Controller implements Initializable {
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
             massageBoxOfferBtn.setText("Offered tour successfully.");
+            massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
+            massageBoxOfferBtn.setVisible(true);
 ////            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
-            massageBoxOfferBtn.setText("Something went wrong");
+            massageBoxOfferBtn.setText(er.getMessage());
+            massageBoxOfferBtn.setStyle("-fx-background-color: #FF5733");
+            massageBoxOfferBtn.setVisible(true);
 //            System.out.println("Error in offerTourPackageSubmitBtn");
         }
     }
@@ -321,7 +325,7 @@ public class Controller implements Initializable {
     @FXML
     TextField eventIdAcceptEvent;
     @FXML
-    Text messgaeBoxAcceptEvent;
+    Button messgaeBoxAcceptEvent=new Button();
 
     @FXML
     ListView requestedEventsList = new ListView();
@@ -335,7 +339,8 @@ public class Controller implements Initializable {
 //            eventStatus.setText(Main.evp1.showRequestedEvents());
             eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
             messgaeBoxAcceptEvent.setText("Accepted Event.");
-////            System.out.println(eventIdAcceptEvent.getText());
+            messgaeBoxAcceptEvent.setVisible(true);
+            messgaeBoxAcceptEvent.setStyle("-fx-background-color: #13ea31;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold; ");
             if (Main.evp1.getRequestedEvents().size() < 1) {
                 requestedEventsList.getItems().add("No Event Found");
             } else {
@@ -346,8 +351,11 @@ public class Controller implements Initializable {
                 }
             }
         } catch (Exception e) {
+              messgaeBoxAcceptEvent.setText(e.getMessage());
+              messgaeBoxAcceptEvent.setVisible(true);
+              messgaeBoxAcceptEvent.setStyle("-fx-background-color: #FF5733 ;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold;");
 //            eventStatus.setText(Main.evp1.showRequestedEvents());
-            eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
+//            eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
         }
     }
 
