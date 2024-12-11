@@ -13,11 +13,16 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -34,7 +39,6 @@ public class Controller implements Initializable {
     Pane root;
     Stage stage;
     Scene scene;
-
 
     //   Reya's code start
     public void customerHomeBtn(ActionEvent e) // customer home a niye jabe
@@ -69,6 +73,7 @@ public class Controller implements Initializable {
 
 
     //    request for corporate event start
+
     public void requestForCorporateEventBtn(ActionEvent e)  // request for corporate event page a niye jabe
     {
         try {
@@ -104,7 +109,12 @@ public class Controller implements Initializable {
 
 ////            System.out.println(eventTitleForRequestForCorporateEvent.getText() + eventDateForRequestForCorporateEvent.getValue() + customerContactForRequestForCorporateEvent.getText() + durationDaysForRequestForCorporateEvent.getText() + numberOfParticipantsForRequestForCorporateEvent.getText());
 //            String title=eventTitleForRequestForCorporateEvent.getText()
-//              Main.evp1.requestEvent(eventTitleForRequestForCorporateEvent.getText(),customerContactForRequestForCorporateEvent.getText(),eventDateForRequestForCorporateEvent.getValue(),);
+            Main.evp1.requestEvent(eventTitleForRequestForCorporateEvent.getText(),
+                    customerContactForRequestForCorporateEvent.getText(),
+                    eventDateForRequestForCorporateEvent.getValue(),
+                    Integer.parseInt(durationDaysForRequestForCorporateEvent.getText()),
+                    Integer.parseInt(numberOfParticipantsForRequestForCorporateEvent.getText())
+                    );
 ////            System.out.println(eventDateForRequestForCorporateEvent.getValue().getClass().getName());
 
         } catch (Exception er) {
@@ -141,8 +151,9 @@ public class Controller implements Initializable {
 
     public void registerTourSubmitBtn(ActionEvent e) {
         try {
-//            Main.evp1.registerForTour();
+            Main.evp1.registerForTour(tourIdForRegisterForTour.getText(),Integer.parseInt(participantForRegisterForTour.getText()),contactForRegisterForTour.getText());
 //            System.out.println("Done");
+            tableRefresh();
         } catch (Exception ex) {
 //            System.out.println("Error in registerTourSubmitBtn");
         }
@@ -150,6 +161,7 @@ public class Controller implements Initializable {
 
     //    register for tour end
 //    pay bill start
+
     public void payBillBtn(ActionEvent e) {
         try {
             root = FXMLLoader.load(getClass().getResource("PayBill.fxml"));
@@ -166,16 +178,42 @@ public class Controller implements Initializable {
     TextField eventIdForPayBill;
     @FXML
     Button totalBillForPayBill;
-
+    @FXML
+    Button billPaymentBtn;
     public void showTotalBillForPayBill(ActionEvent e) {
-        totalBillForPayBill.setText("5000 BDT");
+        try{
+            System.out.println(eventIdForPayBill.getText());
+            double tmp=Main.evp1.payBill(eventIdForPayBill.getText());
+            System.out.println(tmp);
+            if((int)tmp>0)
+            {
+                totalBillForPayBill.setText("Total bill: "+tmp);
+                totalBillForPayBill.setVisible(true);
+                billPaymentBtn.setVisible(true);
+                totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
+//                totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+            }
+            else {
+                totalBillForPayBill.setText("Bill Not Found");
+                totalBillForPayBill.setVisible(true);
+                totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
+//                totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+            }
+        } catch (Exception ex) {
+            totalBillForPayBill.setVisible(true);
+            totalBillForPayBill.setText(ex.getMessage());
+            totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
+//            totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        }
     }
 
     public void payBillSubmitBtnPayBill(ActionEvent e) {
         try {
-//            System.out.println("Done");
+            totalBillForPayBill.setText("Payment Done.");
+            totalBillForPayBill.setStyle("-fx-background-color: #0af02d");
         } catch (Exception er) {
-//            System.out.println("Error in payBillSubmitBtn");
+            totalBillForPayBill.setText("Payment Failed.");
+            totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
         }
     }
 //    pay bill end
@@ -427,11 +465,14 @@ public class Controller implements Initializable {
     TextField eventIdAssignEventManager;
     @FXML
     TextField managerNameAssignEventManager;
+    @FXML
+    TextArea modalArea;
 
     public void assignEventManager(ActionEvent event) {
         try {
             Main.evp1.assignEventManager(eventIdAssignEventManager.getText(), managerNameAssignEventManager.getText());
             tableRefresh();
+
         } catch (Exception e) {
 //            System.out.println("Error in assignEventManager");
         }
@@ -500,11 +541,9 @@ public class Controller implements Initializable {
     public void tableRefresh() {
         try {
             System.out.println("table refresh called");
-            ObservableList<TourPackage> eventListForCustomer = FXCollections.observableArrayList();
-            ObservableList<Event> eventListForEmployee = FXCollections.observableArrayList();
             if (Main.evp1.getEvents().size() < 1) {
-                allEventsList.getItems().add("No Event Found");
-                eventListForCustomer.clear();
+                eventTableViewForCustomer.getItems().clear();
+                eventTableViewForEmployee.getItems().clear();
             } else {
                 allEventsList.getItems().clear();
                 eventTableViewForCustomer.getItems().clear();
@@ -533,7 +572,7 @@ public class Controller implements Initializable {
             perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
             totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
             eventNumOfParticipantsForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-            eventTableViewForCustomer.setItems(eventListForCustomer);
+//            eventTableViewForCustomer.setItems(eventListForCustomer);
 //  Table view for customer end
 
 //  Table view for employee start
@@ -561,7 +600,7 @@ public class Controller implements Initializable {
             eventManagerForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
             eventManagerForEmployee.setEditable(true);
 
-            eventListForEmployee.addAll(Main.evp1.getEvents());
+//            eventListForEmployee.addAll(Main.evp1.getEvents());
 
             eventTitleTableViewForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, String> event) -> {
                 try {
@@ -590,7 +629,7 @@ public class Controller implements Initializable {
                 }
             });
 
-            eventNumOfParticipantsForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event,Integer>event)->{
+            eventNumOfParticipantsForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, Integer> event) -> {
 
                 try {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -603,7 +642,6 @@ public class Controller implements Initializable {
 //            System.out.println("Error in logOutBtn");
                 }
             });
-
 
 
 //  Table view for employee end

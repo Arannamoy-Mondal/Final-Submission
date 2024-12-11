@@ -10,11 +10,12 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
 <VBox alignment="center" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-   <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane fx:id="scene_pane"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
       <children>
             <Button layoutX="525.0" layoutY="163.0" mnemonicParsing="false" onAction="#showTotalBillForPayBill" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-background-color: #0284c7;" text="Submit" />
-            <Button layoutX="524.0" layoutY="262.0" mnemonicParsing="false" onAction="#payBillSubmitBtnPayBill" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-background-color: #FF5733;" text="Pay Bill" />
+            <Button layoutX="524.0" layoutY="162.0" mnemonicParsing="false" visible="false" fx:id="billPaymentBtn" onAction="#payBillSubmitBtnPayBill" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-background-color: #FF5733;" text="Pay Bill" />
             <Button layoutX="48.0" layoutY="33.0" mnemonicParsing="false" onAction="#customerHomeBtn" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #0284c7;" text="Menu" />
             <TextField fx:id="eventIdForPayBill" layoutX="477.0" layoutY="114.0" style="-fx-font-weight: bold; -fx-font-size: 16;" />
             <Text layoutX="360.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Enter Event id">
@@ -22,11 +23,11 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <Text layoutX="362.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Total Amount">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
+<!--            <Text layoutX="362.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Total Amount">-->
+<!--               <font>-->
+<!--                  <Font name="System Bold" size="12.0" />-->
+<!--               </font>-->
+<!--            </Text>-->
             <Text layoutX="161.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Logged in as customer" textAlignment="CENTER" wrappingWidth="823.1999877929691">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -34,11 +35,11 @@
             </Text>
 <!--            <ListView layoutX="40.0" layoutY="347.0" prefHeight="362.0" prefWidth="1066.0" />-->
             <Text layoutX="11.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Event Status" textAlignment="CENTER" wrappingWidth="1115.1343994140625" />
-            <Button fx:id="totalBillForPayBill" layoutX="493.0" layoutY="214.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+            <Button fx:id="totalBillForPayBill" layoutX="-200" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" layoutY="214.0" defaultButton="false" textAlignment="CENTER" visible="false" mnemonicParsing="false" alignment="center" prefHeight="26.0" prefWidth="300.0" style="-fx-font-weight: bold; -fx-font-size: 16;" />
          <Text layoutX="279.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Pay Bill" textAlignment="CENTER" wrappingWidth="599.91748046875" />
          <Button layoutX="1009.0" layoutY="33.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #FF5733;" text="Logout" />
 
-          <TableView layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomer">
+          <TableView  AnchorPane.bottomAnchor="1" layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomer">
               <columns>
                   <TableColumn prefWidth="150" text="Id" fx:id="eventIdTableViewForCustomer"/>
                   <TableColumn prefWidth="150" text="Event Title" fx:id="eventTitleTableViewForCustomer"/>
