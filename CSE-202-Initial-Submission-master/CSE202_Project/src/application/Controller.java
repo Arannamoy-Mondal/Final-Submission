@@ -2,6 +2,8 @@ package application;
 
 import event.lib.*;
 import event.lib.Event;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,11 +24,15 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.stage.WindowEvent;
 import javafx.util.converter.IntegerStringConverter;
+
+import static java.time.Duration.*;
 
 public class Controller implements Initializable {
     Pane root;
@@ -797,10 +803,11 @@ public class Controller implements Initializable {
         tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
 
         System.out.println(searchTourId.getText());
-        showModal(stage,tableView);
+//        showModal(stage,tableView);
+        showModal(stage);
     }
 
-    private void showModal(Stage ownerStage,TableView<TourPackage>tableView) {
+    public void showModal(Stage ownerStage,TableView<TourPackage>tableView) {
         // Create a new stage for the modal dialog
         Stage modalStage = new Stage();
         modalStage.initOwner(ownerStage);  // Set the owner of the modal to be the main window
@@ -812,8 +819,32 @@ public class Controller implements Initializable {
         modalRoot.getChildren().add(closeButton);
         Scene modalScene = new Scene(modalRoot, Toolkit.getDefaultToolkit().getScreenSize().getHeight(), Toolkit.getDefaultToolkit().getScreenSize().getWidth());
         modalStage.setTitle("Modal Dialog");
+        modalStage.setMaximized(true);
         modalStage.setScene(modalScene);
         modalStage.showAndWait(); // // Show the modal and block interaction with the main window
+    }
+    public void showModal(Stage ownerStage) {
+        try{
+            Stage modalStage = new Stage();
+            modalStage.initOwner(ownerStage);
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            Timeline timeline = new Timeline(
+                    new KeyFrame(javafx.util.Duration.seconds(10),
+                            event -> modalStage.close())
+            );
+            timeline.setCycleCount(1); // Run only once
+            timeline.play();
+            Pane modalRoot =FXMLLoader.load(getClass().getResource("Modal.fxml"));
+            Scene modalScene = new Scene(modalRoot);
+            modalStage.setTitle("Modal Dialog");
+            modalStage.setMaximized(true);
+            modalStage.setScene(modalScene);
+            modalStage.showAndWait();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 // search tour end
 }
