@@ -12,16 +12,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -30,7 +26,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 public class Controller implements Initializable {
@@ -189,30 +184,36 @@ public class Controller implements Initializable {
                 totalBillForPayBill.setVisible(true);
                 billPaymentBtn.setVisible(true);
                 totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
-                totalBillForPayBill.setDisable(true);
+//                totalBillForPayBill.setDisable(true);
 //                totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-            } else {
-                totalBillForPayBill.setText("Bill Not Found");
+            } else if ((int) tmp == 0) {
+                totalBillForPayBill.setText("Bill not prepared yet. Please try after some time.");
                 totalBillForPayBill.setVisible(true);
                 totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
-                totalBillForPayBill.setDisable(true);
+//                totalBillForPayBill.setDisable(true);
 //                totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+            } else {
+                totalBillForPayBill.setText("Bill not found.");
+                totalBillForPayBill.setVisible(true);
+                totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
             }
         } catch (Exception ex) {
             totalBillForPayBill.setVisible(true);
             totalBillForPayBill.setText(ex.getMessage());
             totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
-            totalBillForPayBill.setDisable(true);
+//            totalBillForPayBill.setDisable(true);
 //            totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
         }
     }
 
     public void payBillSubmitBtnPayBill(ActionEvent e) {
         try {
+            Main.evp1.paymentDone(eventIdForPayBill.getText());
             totalBillForPayBill.setText("Payment Done.");
             totalBillForPayBill.setStyle("-fx-background-color: #0af02d");
+            tableRefresh();
         } catch (Exception er) {
-            totalBillForPayBill.setText("Payment Failed.");
+            totalBillForPayBill.setText(er.getMessage());
             totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
         }
     }
@@ -286,13 +287,13 @@ public class Controller implements Initializable {
             massageBoxOfferBtn.setText("Offered tour successfully.");
             massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
             massageBoxOfferBtn.setVisible(true);
-            massageBoxOfferBtn.setDisable(true);
+//            massageBoxOfferBtn.setDisable(true);
 ////            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
             massageBoxOfferBtn.setText(er.getMessage());
             massageBoxOfferBtn.setStyle("-fx-background-color: #FF5733");
             massageBoxOfferBtn.setVisible(true);
-            massageBoxOfferBtn.setDisable(true);
+//            massageBoxOfferBtn.setDisable(true);
 //            System.out.println("Error in offerTourPackageSubmitBtn");
         }
     }
@@ -339,13 +340,13 @@ public class Controller implements Initializable {
             messgaeBoxAcceptEvent.setText("Accepted Event.");
             messgaeBoxAcceptEvent.setVisible(true);
             messgaeBoxAcceptEvent.setStyle("-fx-background-color: #13ea31;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold; ");
-            messgaeBoxAcceptEvent.setDisable(true);
+//            messgaeBoxAcceptEvent.setDisable(true);
             tableRefresh();
         } catch (Exception e) {
             messgaeBoxAcceptEvent.setText(e.getMessage());
             messgaeBoxAcceptEvent.setVisible(true);
             messgaeBoxAcceptEvent.setStyle("-fx-background-color: #FF5733 ;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold;");
-            messgaeBoxAcceptEvent.setDisable(true);
+//            messgaeBoxAcceptEvent.setDisable(true);
 //            eventStatus.setText(Main.evp1.showRequestedEvents());
 //            eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
         }
@@ -431,8 +432,8 @@ public class Controller implements Initializable {
 
     public void disableTaskDescription(ActionEvent event) {
         try {
-            if(startTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
-                taskDescriptionTaskManage.setDisable(true);
+            if (startTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
+//                taskDescriptionTaskManage.setDisable(true);
                 messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
                 messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
             } else {
@@ -475,14 +476,14 @@ public class Controller implements Initializable {
             Main.evp1.assignEventManager(eventIdAssignEventManager.getText(), managerNameAssignEventManager.getText());
             messageBoxForAssignEventManager.setText("Assign Event Manager");
             messageBoxForAssignEventManager.setStyle("-fx-background-color:#13ea31 ;-fx-font-weight: bold;-fx-font-size: 16");
-            messageBoxForAssignEventManager.setDisable(true);
+//            messageBoxForAssignEventManager.setDisable(true);
             messageBoxForAssignEventManager.setVisible(true);
             tableRefresh();
 
         } catch (Exception e) {
             messageBoxForAssignEventManager.setText(e.getMessage());
             messageBoxForAssignEventManager.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
-            messageBoxForAssignEventManager.setDisable(true);
+//            messageBoxForAssignEventManager.setDisable(true);
             messageBoxForAssignEventManager.setVisible(true);
         }
     }
@@ -547,21 +548,24 @@ public class Controller implements Initializable {
 //    Requested event for table view start
 
     @FXML
-    TableView<Event> reventTableViewForEmployee = new TableView<>();
+    TableView<Event> requestedEventTableViewForEmployee = new TableView<>();
 
     @FXML
-    TableColumn<Event, String> reventIdTableViewForEmployee = new TableColumn<>();
+    TableColumn<Event, String> requestedEventIdTableViewForEmployee = new TableColumn<>();
     @FXML
-    TableColumn<Event, String> reventTitleTableViewForEmployee = new TableColumn<>();
+    TableColumn<Event, String> requestedEventTitleTableViewForEmployee = new TableColumn<>();
     @FXML
-    TableColumn<Event, LocalDate> reventDateTableViewForEmployee = new TableColumn<>();
+    TableColumn<Event, LocalDate> requestedEventDateTableViewForEmployee = new TableColumn<>();
     @FXML
-    TableColumn<Event, Integer> reventDurationDaysForEmployee = new TableColumn<>();
+    TableColumn<Event, Integer> requestedEventDurationDaysForEmployee = new TableColumn<>();
     @FXML
-    TableColumn<Event, Integer> reventNumOfParticipantsForEmployee = new TableColumn<>();
+    TableColumn<Event, Integer> requestedEventNumOfParticipantsForEmployee = new TableColumn<>();
     @FXML
-    TableColumn<Event, String> reventManagerForEmployee = new TableColumn<>();
+    TableColumn<Event, String> requestedEventManagerForEmployee = new TableColumn<>();
 
+
+    @FXML
+    TableColumn<Event, String> paymentStatusCol = new TableColumn<>();
 //    Requested event for table view end
 
     //  Table view for employee end
@@ -578,42 +582,42 @@ public class Controller implements Initializable {
             if (Main.evp1.getEvents().size() < 1) {
                 eventTableViewForCustomer.getItems().clear();
                 eventTableViewForEmployee.getItems().clear();
+                requestedEventTableViewForEmployee.getItems().clear();
             } else {
                 eventTableViewForCustomer.getItems().clear();
                 eventTableViewForEmployee.getItems().clear();
+                eventTableViewForCustomerRegisterTour.getItems().clear();
                 for (Event e : Main.evp1.getEvents()) {
                     if (e instanceof TourPackage) {
                         eventTableViewForCustomerRegisterTour.getItems().add(e);
                         eventTableViewForCustomer.getItems().add(e);
                         System.out.println(((TourPackage) e).getNumOfRegisteredParticipants());
-                    }
-                    else
-                    {
-                    eventTableViewForCustomer.getItems().add(e);
+                    } else {
+                        eventTableViewForCustomer.getItems().add(e);
                     }
                     eventTableViewForEmployee.getItems().add(e);
                 }
             }
 
-            if(Main.evp1.getRequestedEvents().size()<1) {
-                reventTableViewForEmployee.getItems().clear();
-                reventTableViewForEmployee.setVisible(false);
-            }
-            else{
-                reventTableViewForEmployee.getItems().clear();
-                for(Event e:Main.evp1.getRequestedEvents()) {
-                    reventTableViewForEmployee.getItems().add(e);
+            if (Main.evp1.getRequestedEvents().size() < 1) {
+                requestedEventTableViewForEmployee.getItems().clear();
+                requestedEventTableViewForEmployee.setVisible(false);
+            } else {
+                requestedEventTableViewForEmployee.getItems().clear();
+                for (Event e : Main.evp1.getRequestedEvents()) {
+                    requestedEventTableViewForEmployee.getItems().add(e);
                 }
             }
-
 // Table view for customer start
             eventIdTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventId"));
             eventTitleTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
             eventDateTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
             eventDurationDaysForCustomer.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
             perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-//            totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
+            totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
             eventNumOfParticipantsForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+
+            paymentStatusCol.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
 //            eventTableViewForCustomer.setItems(eventListForCustomer);
 //  Table view for customer end
 
@@ -673,16 +677,16 @@ public class Controller implements Initializable {
             });
 
             eventManagerForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, String> event) -> {
-               try{
-                   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                   alert.setTitle("Confirmation.");
-                   alert.setContentText("Are you want to change the information?");
-                   if (alert.showAndWait().get() == ButtonType.OK) {
-                       event.getRowValue().setEventManager(event.getNewValue());
-                   }
-               } catch (Exception ex) {
-                   System.out.println(ex.getMessage());
-               }
+                try {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation.");
+                    alert.setContentText("Are you want to change the information?");
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        event.getRowValue().setEventManager(event.getNewValue());
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
             });
 
             eventNumOfParticipantsForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, Integer> event) -> {
@@ -704,30 +708,42 @@ public class Controller implements Initializable {
 //  Table view for employee accepted event end
 
 
-
 //  Table view for employee requested event start
-            reventTableViewForEmployee.setEditable(true);
-            reventIdTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-            reventIdTableViewForEmployee.setEditable(false);
-            reventTitleTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
-            reventTitleTableViewForEmployee.setEditable(false);
-            reventDateTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
-            reventDateTableViewForEmployee.setEditable(false);
-            reventDurationDaysForEmployee.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
-            reventDurationDaysForEmployee.setEditable(false);
-            reventNumOfParticipantsForEmployee.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-            reventNumOfParticipantsForEmployee.setEditable(false);
-            reventManagerForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventManager"));
-            reventManagerForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
-            reventManagerForEmployee.setEditable(true);
+            requestedEventTableViewForEmployee.setEditable(true);
+            requestedEventIdTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+            requestedEventIdTableViewForEmployee.setEditable(false);
+            requestedEventTitleTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+            requestedEventTitleTableViewForEmployee.setEditable(false);
+            requestedEventDateTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+            requestedEventDateTableViewForEmployee.setEditable(false);
+            requestedEventDurationDaysForEmployee.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+            requestedEventDurationDaysForEmployee.setEditable(false);
+            requestedEventNumOfParticipantsForEmployee.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+            requestedEventNumOfParticipantsForEmployee.setEditable(false);
+            requestedEventManagerForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventManager"));
+            requestedEventManagerForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
+            requestedEventManagerForEmployee.setEditable(true);
 //  Table view for employee requested event end
 
         } catch (Exception e) {
 //            System.out.println("Error in initialize");
         }
     }
+
+
+    //    Not required for this project start
+    public void resetData(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation.");
+        alert.setContentText("Are you want to change the information?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Main.evp1.deleteData();
+        }
+    }
+//    Not required for this project end
 //    Aranna's code end
 
+    //    search tour start
     public void searchForTourBtn(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getResource("SearchEvent.fxml"));
@@ -742,4 +758,62 @@ public class Controller implements Initializable {
             System.out.println("Something went wrong");
         }
     }
+
+    @FXML
+    TextField searchTourId=new TextField();
+
+    public void searchForTour(ActionEvent event) {
+//        root.getChildren().add(tableView);
+//        stage.show();
+//        stage.setTitle("Search Event");
+
+//
+
+//        tableView.setItems(list);
+        TableView<TourPackage> tableView = new TableView<>();
+        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
+        TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
+        TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
+        TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
+        TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
+        TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
+        TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
+        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
+        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
+        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
+        tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
+
+        System.out.println(searchTourId.getText());
+        showModal(stage,tableView);
+    }
+
+    private void showModal(Stage ownerStage,TableView<TourPackage>tableView) {
+        // Create a new stage for the modal dialog
+        Stage modalStage = new Stage();
+        modalStage.initOwner(ownerStage);  // Set the owner of the modal to be the main window
+        modalStage.initModality(Modality.WINDOW_MODAL);  // Make the window modal
+        // Create a simple layout for the modal
+        VBox modalRoot = new VBox(tableView);
+        Button closeButton = new Button("Close Modal");
+        closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
+        modalRoot.getChildren().add(closeButton);
+        Scene modalScene = new Scene(modalRoot, Toolkit.getDefaultToolkit().getScreenSize().getHeight(), Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        modalStage.setTitle("Modal Dialog");
+        modalStage.setScene(modalScene);
+        modalStage.showAndWait(); // // Show the modal and block interaction with the main window
+    }
+// search tour end
 }

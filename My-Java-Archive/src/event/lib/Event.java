@@ -7,12 +7,33 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Event implements Serializable {
-    private String eventTitle, eventId, eventManager, customerContact;
+    private String eventTitle;
+    private String eventId;
+    private String eventManager;
+    private String customerContact;
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public int getTotalBill() {
+        return totalBill;
+    }
+
+    public void setTotalBill(int totalBill) {
+        this.totalBill = totalBill;
+    }
+
+    private int totalBill;
+    private String paymentStatus;
     private LocalDate eventDate;
     private int durationInDays;
     private ArrayList<Task> tasks;
     private int numOfParticipants, unitPrice;
-
     public Event(String eventTitle, String customerContact, LocalDate eventDate, int durationInDays,
                  int numOfParticipants) {
         super();
@@ -23,6 +44,7 @@ public abstract class Event implements Serializable {
         this.durationInDays = durationInDays;
         this.numOfParticipants = numOfParticipants;
         tasks = new ArrayList<>();
+        paymentStatus="Unpaid";
     }
 
     public Event(String eventTitle, LocalDate eventDate, int durationInDays, int numOfParticipants, int unitPrice) {
@@ -34,13 +56,14 @@ public abstract class Event implements Serializable {
         this.numOfParticipants = numOfParticipants;
         this.unitPrice = unitPrice;
         tasks = new ArrayList<>();
+        paymentStatus="Unpaid";
     }
 
     protected void addPrefixCodeToId(String prefix) {
         this.eventId = prefix + this.eventId;
     }
 
-    public abstract double getBill();
+    public abstract double getBill() throws Exception;
 
     public void addTask(String title, String description) {
 //		String id = getEventId() + "-"+String.format("%03d", new Random().nextInt(1000));

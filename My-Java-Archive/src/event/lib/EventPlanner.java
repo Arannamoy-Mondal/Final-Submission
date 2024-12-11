@@ -153,7 +153,7 @@ public class EventPlanner {
                 return it;
             }
         }
-        throw new Exception("This");
+        throw new Exception("This event does not exist.");
     }
 
     // method b
@@ -163,7 +163,7 @@ public class EventPlanner {
                 return it;
             }
         }
-        throw new Exception("This");
+        throw new Exception("This event does not exist.");
     }
 
     // method c
@@ -182,7 +182,7 @@ public class EventPlanner {
         ArrayList<TourPackage> ans = new ArrayList<>();
         for (Event it : events) {
             String chk = it.getEventId();
-            if (chk.charAt(0) == 'T' && chk.charAt(1) == 'P' && it.getEventTitle().equals(title)) {
+            if (it instanceof TourPackage && it.getEventTitle().equals(title)) {
                 ans.add(new TourPackage(it.getEventTitle(),it.getEventDate(),it.getDurationInDays(),
                         it.getNumOfParticipants(),it.getUnitPrice()));
             }
@@ -288,7 +288,32 @@ public class EventPlanner {
     }
 
 
+
 //   custom method start
+
+//    Update payment status
+    public void paymentDone(String eventId) throws Exception{
+        for(Event it:events){
+            if(it.getEventId().equals(eventId)){
+                if(it.getPaymentStatus().equals("Unpaid") && it instanceof CorporateEvent)
+                {
+                    it.setPaymentStatus("Paid");
+                    return;
+                }
+                else if(it.getPaymentStatus().equals("Unpaid") && it instanceof TourPackage){
+                    int dueBill=it.getNumOfParticipants()*it.getUnitPrice()-it.getTotalBill();
+                    it.setPaymentStatus("Due "+ dueBill);
+                    it.setTotalBill(it.getNumOfParticipants()*it.getUnitPrice());
+                    if(it.getTotalBill() == it.getNumOfParticipants()*it.getUnitPrice()){
+                        it.setPaymentStatus("Paid");
+                    }
+                    return;
+                }
+                else throw new Exception("This event is already paid.");
+            }
+        }
+        throw new Exception("This event does not exist.");
+    }
     // testing purpose only
 
     // method custom1

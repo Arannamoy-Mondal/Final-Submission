@@ -32,7 +32,7 @@
             <Button layoutX="935.0" layoutY="81.0" mnemonicParsing="false"
                     style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #FF5733;" text="Logout"
                     onAction="#logOutBtn"/>
-            <Button layoutX="579.0" layoutY="230.0" mnemonicParsing="false"
+            <Button layoutX="579.0" layoutY="230.0" mnemonicParsing="false" onAction="#searchForTour"
                     style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Search"/>
             <Label layoutX="569.0" layoutY="285.0" style="-fx-font-size: 16; -fx-font-weight: bold;"
                    text="Event Status"/>
@@ -40,7 +40,7 @@
                    text="Logged in as Customer"/>
             <Label layoutX="571.0" layoutY="119.0" style="-fx-font-size: 16; -fx-font-weight: bold;"
                    text="Search Tour"/>
-            <TextField layoutX="534.0" layoutY="167.0" promptText="Evnet Title"
+            <TextField layoutX="534.0" layoutY="167.0" promptText="Event Title" fx:id="searchTourId"
                        style="-fx-font-size: 16; -fx-font-weight: bold; -fx-alignment: center;"/>
             <Label layoutX="441.0" layoutY="173.0" style="-fx-font-size: 16; -fx-font-weight: bold;"
                    text="Event Title"/>

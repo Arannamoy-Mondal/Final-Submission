@@ -29,7 +29,7 @@ public class TourPackage extends Event implements Serializable {
     }
 
     @Override
-    public double getBill() {
+    public double getBill() throws Exception {
         return getNumOfRegisteredParticipants()*getUnitPrice();
     }
 

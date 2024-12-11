@@ -22,7 +22,7 @@ public class CorporateEvent extends Event implements Serializable {
     public void setDiscount(boolean hasDiscount) {
         this.hasDiscount = hasDiscount;
     }
-
+    private int totalBill;
     public CorporateEvent(String eventTitle, String customerContact, LocalDate eventDate, int durationInDays,
                           int numOfParticipants) {
         super(eventTitle, customerContact, eventDate, durationInDays, numOfParticipants);

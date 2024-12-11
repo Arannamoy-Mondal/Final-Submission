@@ -48,7 +48,7 @@
                   <TableColumn fx:id="eventDurationDaysForCustomer" prefWidth="150" text="Event Durations Days" />
                   <TableColumn fx:id="perPersonPriceForCustomer" prefWidth="150" text="Per Person Price" />
                   <TableColumn fx:id="eventNumOfParticipantsForCustomer" prefWidth="150" text="Total Participants" />
-                  <TableColumn fx:id="totalRegisteredForCustomer" prefWidth="150" text="Registered Participants" />
+                  <TableColumn fx:id="paymentStatusCol" prefWidth="150" text="Payment Status" />
               </columns>
           </TableView>
          </children>
