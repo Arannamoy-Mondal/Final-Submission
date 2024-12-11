@@ -24,7 +24,7 @@
             <Label layoutX="425.0" layoutY="183.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Contact" />
 <!--            <ListView layoutX="18.0" layoutY="319.0" prefHeight="460.0" prefWidth="1158.0" />-->
 
-          <TableView layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomer">
+          <TableView layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomerRegisterTour">
               <columns>
                   <TableColumn prefWidth="150" text="Id" fx:id="eventIdTableViewForCustomer"/>
                   <TableColumn prefWidth="150" text="Event Title" fx:id="eventTitleTableViewForCustomer"/>

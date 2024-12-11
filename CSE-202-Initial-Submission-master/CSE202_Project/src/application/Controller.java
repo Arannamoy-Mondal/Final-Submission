@@ -1,8 +1,7 @@
 package application;
 
-import event.lib.DataHandler;
-import event.lib.Task;
-import event.lib.TourPackage;
+import event.lib.*;
+import event.lib.Event;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +30,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import event.lib.Event;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -494,33 +492,36 @@ public class Controller implements Initializable {
 
     // Table view for customer start
     @FXML
-    TableView<TourPackage> eventTableViewForCustomer = new TableView<>();
+    TableView<Event> eventTableViewForCustomer = new TableView<>();
+    @FXML
+    TableView<Event> eventTableViewForCustomerRegisterTour = new TableView<>();
 
     @FXML
-    TableColumn<TourPackage, String> eventIdTableViewForCustomer = new TableColumn<>();
+    TableColumn<Event, String> eventIdTableViewForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, String> eventTitleTableViewForCustomer = new TableColumn<>();
+    TableColumn<Event, String> eventTitleTableViewForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, LocalDate> eventDateTableViewForCustomer = new TableColumn<>();
+    TableColumn<Event, LocalDate> eventDateTableViewForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, Integer> eventDurationDaysForCustomer = new TableColumn<>();
+    TableColumn<Event, Integer> eventDurationDaysForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, Integer> perPersonPriceForCustomer = new TableColumn<>();
+    TableColumn<Event, Integer> perPersonPriceForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, Integer> eventNumOfParticipantsForCustomer = new TableColumn<>();
+    TableColumn<Event, Integer> eventNumOfParticipantsForCustomer = new TableColumn<>();
 
     @FXML
-    TableColumn<TourPackage, String> totalRegisteredForCustomer = new TableColumn<>();
+    TableColumn<Event, String> totalRegisteredForCustomer = new TableColumn<>();
 
     // Table view for customer end
 
 
     //  Table view for employee start
+//    Accepted event table view start
     @FXML
     TableView<Event> eventTableViewForEmployee = new TableView<>();
 
@@ -541,6 +542,28 @@ public class Controller implements Initializable {
     @FXML
     TableColumn<Event, String> eventManagerForEmployee = new TableColumn<>();
 
+//    Accepted event for table view end
+
+//    Requested event for table view start
+
+    @FXML
+    TableView<Event> reventTableViewForEmployee = new TableView<>();
+
+    @FXML
+    TableColumn<Event, String> reventIdTableViewForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, String> reventTitleTableViewForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, LocalDate> reventDateTableViewForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, Integer> reventDurationDaysForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, Integer> reventNumOfParticipantsForEmployee = new TableColumn<>();
+    @FXML
+    TableColumn<Event, String> reventManagerForEmployee = new TableColumn<>();
+
+//    Requested event for table view end
+
     //  Table view for employee end
 
     @Override
@@ -560,10 +583,26 @@ public class Controller implements Initializable {
                 eventTableViewForEmployee.getItems().clear();
                 for (Event e : Main.evp1.getEvents()) {
                     if (e instanceof TourPackage) {
-                        eventTableViewForCustomer.getItems().add((TourPackage) e);
+                        eventTableViewForCustomerRegisterTour.getItems().add(e);
+                        eventTableViewForCustomer.getItems().add(e);
                         System.out.println(((TourPackage) e).getNumOfRegisteredParticipants());
                     }
+                    else
+                    {
+                    eventTableViewForCustomer.getItems().add(e);
+                    }
                     eventTableViewForEmployee.getItems().add(e);
+                }
+            }
+
+            if(Main.evp1.getRequestedEvents().size()<1) {
+                reventTableViewForEmployee.getItems().clear();
+                reventTableViewForEmployee.setVisible(false);
+            }
+            else{
+                reventTableViewForEmployee.getItems().clear();
+                for(Event e:Main.evp1.getRequestedEvents()) {
+                    reventTableViewForEmployee.getItems().add(e);
                 }
             }
 
@@ -573,12 +612,12 @@ public class Controller implements Initializable {
             eventDateTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
             eventDurationDaysForCustomer.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
             perPersonPriceForCustomer.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-            totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
+//            totalRegisteredForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfRegisteredParticipants"));
             eventNumOfParticipantsForCustomer.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
 //            eventTableViewForCustomer.setItems(eventListForCustomer);
 //  Table view for customer end
 
-//  Table view for employee start
+//  Table view for employee accepted event start
             eventTableViewForEmployee.setEditable(true);
             eventIdTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventId"));
             eventIdTableViewForEmployee.setEditable(false);
@@ -595,8 +634,8 @@ public class Controller implements Initializable {
             perPersonPriceForEmployee.setEditable(true);
 
             eventNumOfParticipantsForEmployee.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-            eventNumOfParticipantsForCustomer.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-            eventNumOfParticipantsForCustomer.setEditable(true);
+            eventNumOfParticipantsForEmployee.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            eventNumOfParticipantsForEmployee.setEditable(true);
 
 
             eventManagerForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventManager"));
@@ -633,6 +672,19 @@ public class Controller implements Initializable {
                 }
             });
 
+            eventManagerForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, String> event) -> {
+               try{
+                   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                   alert.setTitle("Confirmation.");
+                   alert.setContentText("Are you want to change the information?");
+                   if (alert.showAndWait().get() == ButtonType.OK) {
+                       event.getRowValue().setEventManager(event.getNewValue());
+                   }
+               } catch (Exception ex) {
+                   System.out.println(ex.getMessage());
+               }
+            });
+
             eventNumOfParticipantsForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, Integer> event) -> {
 
                 try {
@@ -640,6 +692,7 @@ public class Controller implements Initializable {
                     alert.setTitle("Confirmation.");
                     alert.setContentText("Are you want to change the information?");
                     if (alert.showAndWait().get() == ButtonType.OK) {
+                        System.out.println(event.getNewValue());
                         event.getRowValue().setNumOfParticipants(event.getNewValue());
                     }
                 } catch (Exception ex) {
@@ -648,7 +701,26 @@ public class Controller implements Initializable {
             });
 
 
-//  Table view for employee end
+//  Table view for employee accepted event end
+
+
+
+//  Table view for employee requested event start
+            reventTableViewForEmployee.setEditable(true);
+            reventIdTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+            reventIdTableViewForEmployee.setEditable(false);
+            reventTitleTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+            reventTitleTableViewForEmployee.setEditable(false);
+            reventDateTableViewForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+            reventDateTableViewForEmployee.setEditable(false);
+            reventDurationDaysForEmployee.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+            reventDurationDaysForEmployee.setEditable(false);
+            reventNumOfParticipantsForEmployee.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+            reventNumOfParticipantsForEmployee.setEditable(false);
+            reventManagerForEmployee.setCellValueFactory(new PropertyValueFactory<>("eventManager"));
+            reventManagerForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
+            reventManagerForEmployee.setEditable(true);
+//  Table view for employee requested event end
 
         } catch (Exception e) {
 //            System.out.println("Error in initialize");
