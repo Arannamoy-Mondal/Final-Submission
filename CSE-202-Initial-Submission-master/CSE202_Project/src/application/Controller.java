@@ -114,7 +114,7 @@ public class Controller implements Initializable {
                     eventDateForRequestForCorporateEvent.getValue(),
                     Integer.parseInt(durationDaysForRequestForCorporateEvent.getText()),
                     Integer.parseInt(numberOfParticipantsForRequestForCorporateEvent.getText())
-                    );
+            );
 ////            System.out.println(eventDateForRequestForCorporateEvent.getValue().getClass().getName());
 
         } catch (Exception er) {
@@ -151,7 +151,7 @@ public class Controller implements Initializable {
 
     public void registerTourSubmitBtn(ActionEvent e) {
         try {
-            Main.evp1.registerForTour(tourIdForRegisterForTour.getText(),Integer.parseInt(participantForRegisterForTour.getText()),contactForRegisterForTour.getText());
+            Main.evp1.registerForTour(tourIdForRegisterForTour.getText(), Integer.parseInt(participantForRegisterForTour.getText()), contactForRegisterForTour.getText());
 //            System.out.println("Done");
             tableRefresh();
         } catch (Exception ex) {
@@ -180,29 +180,31 @@ public class Controller implements Initializable {
     Button totalBillForPayBill;
     @FXML
     Button billPaymentBtn;
+
     public void showTotalBillForPayBill(ActionEvent e) {
-        try{
+        try {
             System.out.println(eventIdForPayBill.getText());
-            double tmp=Main.evp1.payBill(eventIdForPayBill.getText());
+            double tmp = Main.evp1.payBill(eventIdForPayBill.getText());
             System.out.println(tmp);
-            if((int)tmp>0)
-            {
-                totalBillForPayBill.setText("Total bill: "+tmp);
+            if ((int) tmp > 0) {
+                totalBillForPayBill.setText("Total bill: " + tmp);
                 totalBillForPayBill.setVisible(true);
                 billPaymentBtn.setVisible(true);
                 totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
+                totalBillForPayBill.setDisable(true);
 //                totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-            }
-            else {
+            } else {
                 totalBillForPayBill.setText("Bill Not Found");
                 totalBillForPayBill.setVisible(true);
                 totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
+                totalBillForPayBill.setDisable(true);
 //                totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
             }
         } catch (Exception ex) {
             totalBillForPayBill.setVisible(true);
             totalBillForPayBill.setText(ex.getMessage());
             totalBillForPayBill.setStyle("-fx-background-color: #FF5733");
+            totalBillForPayBill.setDisable(true);
 //            totalBillForPayBill.setPrefWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
         }
     }
@@ -285,11 +287,13 @@ public class Controller implements Initializable {
             massageBoxOfferBtn.setText("Offered tour successfully.");
             massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
             massageBoxOfferBtn.setVisible(true);
+            massageBoxOfferBtn.setDisable(true);
 ////            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
             massageBoxOfferBtn.setText(er.getMessage());
             massageBoxOfferBtn.setStyle("-fx-background-color: #FF5733");
             massageBoxOfferBtn.setVisible(true);
+            massageBoxOfferBtn.setDisable(true);
 //            System.out.println("Error in offerTourPackageSubmitBtn");
         }
     }
@@ -325,7 +329,7 @@ public class Controller implements Initializable {
     @FXML
     TextField eventIdAcceptEvent;
     @FXML
-    Button messgaeBoxAcceptEvent=new Button();
+    Button messgaeBoxAcceptEvent = new Button();
 
     @FXML
     ListView requestedEventsList = new ListView();
@@ -341,6 +345,7 @@ public class Controller implements Initializable {
             messgaeBoxAcceptEvent.setText("Accepted Event.");
             messgaeBoxAcceptEvent.setVisible(true);
             messgaeBoxAcceptEvent.setStyle("-fx-background-color: #13ea31;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold; ");
+            messgaeBoxAcceptEvent.setDisable(true);
             if (Main.evp1.getRequestedEvents().size() < 1) {
                 requestedEventsList.getItems().add("No Event Found");
             } else {
@@ -351,9 +356,10 @@ public class Controller implements Initializable {
                 }
             }
         } catch (Exception e) {
-              messgaeBoxAcceptEvent.setText(e.getMessage());
-              messgaeBoxAcceptEvent.setVisible(true);
-              messgaeBoxAcceptEvent.setStyle("-fx-background-color: #FF5733 ;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold;");
+            messgaeBoxAcceptEvent.setText(e.getMessage());
+            messgaeBoxAcceptEvent.setVisible(true);
+            messgaeBoxAcceptEvent.setStyle("-fx-background-color: #FF5733 ;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold;");
+            messgaeBoxAcceptEvent.setDisable(true);
 //            eventStatus.setText(Main.evp1.showRequestedEvents());
 //            eventStatus.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-alignment: center");
         }
@@ -474,15 +480,22 @@ public class Controller implements Initializable {
     @FXML
     TextField managerNameAssignEventManager;
     @FXML
-    TextArea modalArea;
+    Button messageBoxForAssignEventManager;
 
     public void assignEventManager(ActionEvent event) {
         try {
             Main.evp1.assignEventManager(eventIdAssignEventManager.getText(), managerNameAssignEventManager.getText());
+            messageBoxForAssignEventManager.setText("Assign Event Manager");
+            messageBoxForAssignEventManager.setStyle("-fx-background-color:#13ea31 ;-fx-font-weight: bold;-fx-font-size: 16");
+            messageBoxForAssignEventManager.setDisable(true);
+            messageBoxForAssignEventManager.setVisible(true);
             tableRefresh();
 
         } catch (Exception e) {
-//            System.out.println("Error in assignEventManager");
+            messageBoxForAssignEventManager.setText(e.getMessage());
+            messageBoxForAssignEventManager.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+            messageBoxForAssignEventManager.setDisable(true);
+            messageBoxForAssignEventManager.setVisible(true);
         }
     }
 
@@ -559,6 +572,7 @@ public class Controller implements Initializable {
                 for (Event e : Main.evp1.getEvents()) {
                     if (e instanceof TourPackage) {
                         eventTableViewForCustomer.getItems().add((TourPackage) e);
+                        System.out.println(((TourPackage) e).getNumOfRegisteredParticipants());
                     }
                     eventTableViewForEmployee.getItems().add(e);
                     allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
@@ -608,6 +622,7 @@ public class Controller implements Initializable {
             eventManagerForEmployee.setCellFactory(TextFieldTableCell.forTableColumn());
             eventManagerForEmployee.setEditable(true);
 
+            allTaskListForEmployee.setCellValueFactory(new PropertyValueFactory<>("tasks"));
 //            eventListForEmployee.addAll(Main.evp1.getEvents());
 
             eventTitleTableViewForEmployee.setOnEditCommit((TableColumn.CellEditEvent<Event, String> event) -> {
