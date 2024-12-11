@@ -1,9 +1,10 @@
 package event.lib;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class TourPackage extends Event{
+public class TourPackage extends Event implements Serializable {
     ArrayList<String> placesToVisit = new ArrayList<>();
 
 

@@ -237,6 +237,7 @@ public class Controller implements Initializable {
                 scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
                 stage.setScene(scene);
                 stage.show();
+
             }
         } catch (Exception ex) {
 //            System.out.println("Error in logOutBtn");
@@ -331,11 +332,6 @@ public class Controller implements Initializable {
     @FXML
     Button messgaeBoxAcceptEvent = new Button();
 
-    @FXML
-    ListView requestedEventsList = new ListView();
-    @FXML
-    ListView allEventsList = new ListView();
-
     public void acceptEvent(ActionEvent event) {
         try {
 
@@ -346,15 +342,7 @@ public class Controller implements Initializable {
             messgaeBoxAcceptEvent.setVisible(true);
             messgaeBoxAcceptEvent.setStyle("-fx-background-color: #13ea31;-fx-alignment: center;-fx-font-size: 16;-fx-font-weight: bold; ");
             messgaeBoxAcceptEvent.setDisable(true);
-            if (Main.evp1.getRequestedEvents().size() < 1) {
-                requestedEventsList.getItems().add("No Event Found");
-            } else {
-                for (Event e : Main.evp1.getRequestedEvents()) {
-////                    System.out.println(e.toString());
-//                    requestedEventsList.getItems().add(e.toString());
-                    requestedEventsList.getItems().add(e.getEventId() + " " + e.getEventManager() + " " + e.getEventTitle() + " " + " " + e.getEventDate() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
-                }
-            }
+            tableRefresh();
         } catch (Exception e) {
             messgaeBoxAcceptEvent.setText(e.getMessage());
             messgaeBoxAcceptEvent.setVisible(true);
@@ -403,9 +391,11 @@ public class Controller implements Initializable {
                 try {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task added successfully.");
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                 } catch (Exception e) {
-                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
+//                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText(e.getMessage().toString());
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
                 }
                 tableRefresh();
             } else if (startTaskRadioBtn.isSelected()) {
@@ -413,8 +403,10 @@ public class Controller implements Initializable {
                 try {
                     Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task start successfully.");
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                 } catch (Exception e) {
                     messgaeBoxTaskManage.setText(e.toString());
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
                 }
                 tableRefresh();
             } else if (endTaskRadioBtn.isSelected()) {
@@ -422,16 +414,37 @@ public class Controller implements Initializable {
                 try {
                     Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task completed successfully.");
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                 } catch (Exception e) {
 //                    System.out.println(e.toString());
+                    messgaeBoxTaskManage.setText(e.getMessage().toString());
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
                 }
                 tableRefresh();
             } else {
                 messgaeBoxTaskManage.setText("Please select one of the following actions: Add task, Start task, End task.");
+                messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
             }
         } catch (Exception e) {
-            messgaeBoxTaskManage.setText("Something went wrong");
+            messgaeBoxTaskManage.setText(e.getMessage().toString());
             messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733");
+        }
+    }
+
+    public void disableTaskDescription(ActionEvent event) {
+        try {
+            if(startTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
+                taskDescriptionTaskManage.setDisable(true);
+                messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
+                messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+            } else {
+                taskDescriptionTaskManage.setDisable(false);
+                messgaeBoxTaskManage.setText("Please enter correct event id.");
+                messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+            }
+        } catch (Exception e) {
+            messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
+            messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
         }
     }
 
@@ -543,7 +556,6 @@ public class Controller implements Initializable {
                 eventTableViewForCustomer.getItems().clear();
                 eventTableViewForEmployee.getItems().clear();
             } else {
-                allEventsList.getItems().clear();
                 eventTableViewForCustomer.getItems().clear();
                 eventTableViewForEmployee.getItems().clear();
                 for (Event e : Main.evp1.getEvents()) {
@@ -552,17 +564,9 @@ public class Controller implements Initializable {
                         System.out.println(((TourPackage) e).getNumOfRegisteredParticipants());
                     }
                     eventTableViewForEmployee.getItems().add(e);
-                    allEventsList.getItems().add(e.getEventId() + " " + e.getEventTitle() + " " + e.getEventDate() + " " + e.getEventManager() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
                 }
             }
-            if (Main.evp1.getRequestedEvents().size() < 1) {
-                requestedEventsList.getItems().add("No Event Found");
-            } else {
-                allEventsList.getItems().clear();
-                for (Event e : Main.evp1.getRequestedEvents()) {
-                    requestedEventsList.getItems().add(e.getEventId() + " " + e.getEventManager() + " " + e.getEventTitle() + " " + " " + e.getEventDate() + " " + e.getCustomerContact() + " " + e.getDurationInDays() + " " + e.getNumOfParticipants());
-                }
-            }
+
 // Table view for customer start
             eventIdTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventId"));
             eventTitleTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));

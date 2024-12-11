@@ -1,15 +1,16 @@
 package event.lib;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Event {
+public abstract class Event implements Serializable {
     private String eventTitle, eventId, eventManager, customerContact;
     private LocalDate eventDate;
     private int durationInDays;
-    private ArrayList<Task> tasks=new ArrayList<>();
+    private ArrayList<Task> tasks;
     private int numOfParticipants, unitPrice;
 
     public Event(String eventTitle, String customerContact, LocalDate eventDate, int durationInDays,
@@ -21,6 +22,7 @@ public abstract class Event {
         this.eventDate = eventDate;
         this.durationInDays = durationInDays;
         this.numOfParticipants = numOfParticipants;
+        tasks = new ArrayList<>();
     }
 
     public Event(String eventTitle, LocalDate eventDate, int durationInDays, int numOfParticipants, int unitPrice) {
@@ -31,6 +33,7 @@ public abstract class Event {
         this.durationInDays = durationInDays;
         this.numOfParticipants = numOfParticipants;
         this.unitPrice = unitPrice;
+        tasks = new ArrayList<>();
     }
 
     protected void addPrefixCodeToId(String prefix) {

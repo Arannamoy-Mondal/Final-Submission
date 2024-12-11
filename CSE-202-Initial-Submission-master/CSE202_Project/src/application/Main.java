@@ -33,7 +33,6 @@ public class Main extends Application {
 				event.consume();
 				try {
 					logOut(primaryStage);
-					DataHandler.saveData(evp1);
 					System.out.println(evp1.getEvents().toString());
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -49,17 +48,19 @@ public class Main extends Application {
 		alert.setTitle("Exit");
 		alert.setContentText("Are you sure you want to exit?");
 		if(alert.showAndWait().get() == ButtonType.OK) {
+			evp1.saveData();
 			stage.close();
 		}
 	}
 
 	public static void main(String[] args) {
 		try {
-			evp1=DataHandler.loadData();
+			evp1.loadData();
+//			evp1.deleteData();
 			if(evp1==null) {
 				evp1=new EventPlanner("evp1");
 			}
-			evp1.offerTourPackage("Tour Venus",LocalDate.now(),20,20,50000);
+//			evp1.offerTourPackage("Tour Venus",LocalDate.now(),20,20,50000);
 			System.out.println(evp1.getEvents().toString());
 		}catch(Exception e){
 			System.out.println(e);

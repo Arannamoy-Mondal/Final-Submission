@@ -1,9 +1,10 @@
 package event.lib;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Task {
+public class Task implements Serializable {
     private String title, description, status;
     private LocalDate startDate, endDate;
 
@@ -81,8 +82,8 @@ public class Task {
 //        String sD = startDate.format(formatter);
 //        String eD = endDate.format(formatter);
         //formatter.
-        return "Task [title=" + title + ", status=" + status + ", startDate=" + startDate + ", endDate="
-                + endDate + "]";
+        return "[ Title: "+title + ",\n status: " + status + ", startDate: " + startDate + "\n, endDate: "
+                + endDate + " ]";
     }
 
 

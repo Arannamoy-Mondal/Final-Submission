@@ -1,8 +1,9 @@
 package event.lib;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CorporateEvent extends Event{
+public class CorporateEvent extends Event implements Serializable {
     private String venue;
     private boolean hasDiscount;
 
