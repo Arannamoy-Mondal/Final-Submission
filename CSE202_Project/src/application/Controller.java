@@ -843,7 +843,7 @@ public class Controller implements Initializable {
     @FXML
     TextArea displayArea=new TextArea();
 
-    
+
     public void showModal(Stage ownerStage) {
         try{
 

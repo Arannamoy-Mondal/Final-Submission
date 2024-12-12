@@ -12,7 +12,9 @@
          <children>
 <!--            <Button fx:id="closeButton" onAction="#closeModal" layoutX="667.0" layoutY="734.0" mnemonicParsing="false" style="-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;" text="Close" />-->
             <TextArea fx:id="displayArea" editable="false" layoutX="77.0" layoutY="93.0" prefHeight="514.0" prefWidth="1180.0" />
-             <Text fx:id="testingText"></Text>
+             <Text fx:id="meid"></Text>
+             <Text fx:id="metitle"></Text>
+             <Text fx:id="medate"></Text>
             <Label alignment="CENTER" layoutX="5.0" layoutY="41.0" prefHeight="26.0" prefWidth="1309.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Details" textAlignment="CENTER" />
          </children>
       </AnchorPane>
