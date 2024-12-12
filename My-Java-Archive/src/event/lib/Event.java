@@ -161,10 +161,10 @@ public abstract class Event implements Serializable {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+": [eventTitle=" + eventTitle + ", eventId=" + eventId + ", eventManager=" + eventManager
-                + ", customerContact=" + customerContact + ", eventDate=" + eventDate + ", durationInDays="
-                + durationInDays + ", tasks=" + tasks + ", numOfParticipants=" + numOfParticipants + ", unitPrice="
-                + unitPrice + "]";
+        return this.getClass().getSimpleName()+"\nEventId=" + eventId + "\nEventTitle=" + eventTitle +"\neventManager=" + eventManager
+                + "\ncustomerContact=" + customerContact + "\neventDate=" + eventDate + "\ndurationInDays="
+                + durationInDays + "\ntasks=" + tasks.toString() + "\nnumOfParticipants=" + numOfParticipants + "\nunitPrice="
+                + unitPrice;
     }
 
 

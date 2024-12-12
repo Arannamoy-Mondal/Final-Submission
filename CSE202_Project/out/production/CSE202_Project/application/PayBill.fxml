@@ -40,7 +40,7 @@
          <Text layoutX="279.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Pay Bill" textAlignment="CENTER" wrappingWidth="599.91748046875" />
          <Button layoutX="1009.0" layoutY="33.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-background-color: #FF5733;" text="Logout" />
 
-          <TableView fx:id="eventTableViewForCustomer" layoutX="53.0" layoutY="295.0" prefHeight="378.0" prefWidth="1050" AnchorPane.bottomAnchor="64.0">
+          <TableView onMouseClicked="#getData" fx:id="eventTableViewForCustomer" layoutX="53.0" layoutY="295.0" prefHeight="378.0" prefWidth="1050" AnchorPane.bottomAnchor="64.0">
               <columns>
                   <TableColumn fx:id="eventIdTableViewForCustomer" prefWidth="150" text="Id" />
                   <TableColumn fx:id="eventTitleTableViewForCustomer" prefWidth="150" text="Event Title" />

@@ -14,9 +14,11 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -591,6 +593,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableRefresh();
+        displayArea.setText(str);
+        System.out.println("Init str: "+str);
     }
 
 
@@ -815,8 +819,8 @@ public class Controller implements Initializable {
         tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
 
         System.out.println(searchTourId.getText());
-//        showModal(stage,tableView);
-        showModal(stage);
+        showModal(stage,tableView);
+//        showModal(stage);
     }
 
     public void showModal(Stage ownerStage,TableView<TourPackage>tableView) {
@@ -835,23 +839,33 @@ public class Controller implements Initializable {
         modalStage.setScene(modalScene);
         modalStage.showAndWait(); // // Show the modal and block interaction with the main window
     }
+
+    @FXML
+    TextArea displayArea=new TextArea();
+
+    
     public void showModal(Stage ownerStage) {
         try{
+
             Stage modalStage = new Stage();
             modalStage.initOwner(ownerStage);
-            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initModality(Modality.APPLICATION_MODAL);
             Timeline timeline = new Timeline(
-                    new KeyFrame(javafx.util.Duration.seconds(10),
+                    new KeyFrame(javafx.util.Duration.seconds(60),
                             event -> modalStage.close())
             );
             timeline.setCycleCount(1); // Run only once
             timeline.play();
             Pane modalRoot =FXMLLoader.load(getClass().getResource("Modal.fxml"));
+//            closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
+//            closeButton.setStyle("-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;-fx-pref-width: 250;-fx-pref-height: 250;text: \"Close\";");
+//            closeButton.setText("Close");
             Scene modalScene = new Scene(modalRoot);
             modalStage.setTitle("Modal Dialog");
             modalStage.setMaximized(true);
             modalStage.setScene(modalScene);
             modalStage.showAndWait();
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -859,4 +873,36 @@ public class Controller implements Initializable {
 
     }
 // search tour end
+//    get data from table start
+    public static String str;
+    public void getData(MouseEvent event) {
+            try {
+                int selectedIndex = event.getSource() instanceof TableView ? ((TableView) event.getSource()).getSelectionModel().getSelectedIndex() : -1;
+                if(selectedIndex<=-1){
+                    return;
+                }
+                Event event1= eventTableViewForCustomer.getItems().get(selectedIndex);
+                str=event1.toString();
+                System.out.println(event1.toString());
+                System.out.println(str);
+                showModal(stage);
+                /*
+                System.out.println(event1.getEventId());
+                System.out.println(event1.getEventTitle());
+                System.out.println(event1.getEventDate());
+                System.out.println(event1.getDurationInDays());
+                System.out.println(event1.getUnitPrice());
+                System.out.println(event1.getNumOfParticipants());
+                System.out.println(event1.getPaymentStatus());
+                System.out.println(event1.getTasks());*/
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+    }
+
+    public String displayData(){
+        return str;
+    }
+//    get data from table end
 }

@@ -15,7 +15,7 @@
                 prefHeight="845.0" prefWidth="1208.0" xmlns="http://javafx.com/javafx/23.0.1"
                 xmlns:fx="http://javafx.com/fxml/1">
         <children>
-            <TableView layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomerRegisterTour">
+            <TableView onMouseClicked="#getData" layoutX="75.0" layoutY="327.0" prefHeight="348.0" prefWidth="1050" fx:id="eventTableViewForCustomerRegisterTour">
                 <columns>
                     <TableColumn prefWidth="150" text="Id" fx:id="eventIdTableViewForCustomer"/>
                     <TableColumn prefWidth="150" text="Event Title" fx:id="eventTitleTableViewForCustomer"/>
