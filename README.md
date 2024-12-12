@@ -1,3 +1,4 @@
+# Introduction: <p>This is a basic event management project based on JavaFX.</p>
 # Requirement : <a href="https://gluonhq.com/products/javafx/"> JavaFX SDK, JDK 23, SceneBuilder For Editing<a>
 # Must use JDK 23 for running JAR File 
 # .bat file command for run.bat 
