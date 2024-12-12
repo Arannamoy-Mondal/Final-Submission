@@ -24,6 +24,7 @@
             <TextField fx:id="durationDaysForRequestForCorporateEvent" layoutX="460.0" layoutY="323.0" promptText="Duration Day" style="-fx-font-weight: bold; -fx-font-size: 16;" />
             <TextField fx:id="numberOfParticipantsForRequestForCorporateEvent" layoutX="465.0" layoutY="377.0" promptText="Number of People" style="-fx-font-weight: bold; -fx-font-size: 16;" />
             <DatePicker fx:id="eventDateForRequestForCorporateEvent" layoutX="460.0" layoutY="217.0" prefHeight="37.0" prefWidth="213.0" promptText="Select Date" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+         <Button visible="false" fx:id="messageBoxForRequestForCorporateEvent" layoutX="4.0" layoutY="108.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1126.0" style="-fx-alignment: center; -fx-font-size: 16; -fx-font-weight: bold;" text="Button" />
          </children>
       </AnchorPane>
 </VBox>

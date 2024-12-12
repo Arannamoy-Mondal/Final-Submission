@@ -82,8 +82,8 @@ public class Task implements Serializable {
 //        String sD = startDate.format(formatter);
 //        String eD = endDate.format(formatter);
         //formatter.
-        return "[ Title: "+title + ",\n status: " + status + ", startDate: " + startDate + "\n, endDate: "
-                + endDate + " ]";
+        return "[ Title: "+title + ",status: " + status + ", startDate: " + startDate + ", endDate: "
+                + endDate+" ]";
     }
 
 

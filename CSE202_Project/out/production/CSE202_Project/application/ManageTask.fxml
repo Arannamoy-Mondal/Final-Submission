@@ -35,7 +35,7 @@
          <Button fx:id="messgaeBoxTaskManage" visible="false" layoutX="25.0" layoutY="93.0" prefHeight="26.0" prefWidth="1273.0" textAlignment="CENTER" />
          <Text layoutX="53.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Manage Tasks" textAlignment="CENTER" wrappingWidth="1190.4" />
 <!--         <ListView fx:id="allEventsList" layoutX="26.0" layoutY="377.0" prefHeight="338.0" prefWidth="1135.0" />-->
-         <TableView onMouseClicked="#getData" fx:id="eventTableViewForEmployee" layoutX="62.0" layoutY="388.0" prefHeight="373.0" prefWidth="1200">
+         <TableView fx:id="eventTableViewForEmployee" layoutX="62.0" layoutY="388.0" prefHeight="373.0" prefWidth="1200">
             <columns>
                <TableColumn fx:id="eventIdTableViewForEmployee" prefWidth="150" text="Id" />
                <TableColumn fx:id="eventTitleTableViewForEmployee" prefWidth="150" text="Event Title" />

@@ -25,10 +25,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.stage.WindowEvent;
@@ -104,22 +106,30 @@ public class Controller implements Initializable {
     @FXML
     TextField numberOfParticipantsForRequestForCorporateEvent; // data receive korbe
 
+    @FXML
+    Button messageBoxForRequestForCorporateEvent;
     public void requestForCorporateEventSubmitBtn(ActionEvent e) {
         try {
 //            requestedEvents Arraylist a jabe
 
 ////            System.out.println(eventTitleForRequestForCorporateEvent.getText() + eventDateForRequestForCorporateEvent.getValue() + customerContactForRequestForCorporateEvent.getText() + durationDaysForRequestForCorporateEvent.getText() + numberOfParticipantsForRequestForCorporateEvent.getText());
 //            String title=eventTitleForRequestForCorporateEvent.getText()
-            Main.evp1.requestEvent(eventTitleForRequestForCorporateEvent.getText(),
+            String id=Main.evp1.requestEvent(eventTitleForRequestForCorporateEvent.getText(),
                     customerContactForRequestForCorporateEvent.getText(),
                     eventDateForRequestForCorporateEvent.getValue(),
                     Integer.parseInt(durationDaysForRequestForCorporateEvent.getText()),
                     Integer.parseInt(numberOfParticipantsForRequestForCorporateEvent.getText())
             );
+            messageBoxForRequestForCorporateEvent.setText("Request done. Your request id: "+id+". Please remember this id.");
+            messageBoxForRequestForCorporateEvent.setVisible(true);
+            messageBoxForRequestForCorporateEvent.setStyle("-fx-background-color: #0af02d;");
 ////            System.out.println(eventDateForRequestForCorporateEvent.getValue().getClass().getName());
 
         } catch (Exception er) {
 //            System.out.println("Error in requestForCorporateEventSubmitBtn");
+            messageBoxForRequestForCorporateEvent.setText(er.getMessage());
+            messageBoxForRequestForCorporateEvent.setVisible(true);
+            messageBoxForRequestForCorporateEvent.setStyle("-fx-background-color: #FF5733;");
         }
     }
 
@@ -272,7 +282,7 @@ public class Controller implements Initializable {
     @FXML
     DatePicker eventDateForOfferTourPackage;
     @FXML
-    TextField customerContactForOfferTourPackage;
+    TextField placesForOferTourPackage=new TextField();
     @FXML
     TextField durationDaysForOfferTourPackage;
     @FXML
@@ -286,12 +296,26 @@ public class Controller implements Initializable {
 
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
-            String tourId = Main.evp1.offerTourPackage(
+            String tourId;
+            if(placesForOferTourPackage.getText()==null){
+            tourId = Main.evp1.offerTourPackage(
                     eventTitleForOfferTourPackage.getText(),
                     eventDateForOfferTourPackage.getValue(),
                     Integer.parseInt(durationDaysForOfferTourPackage.getText()),
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
+            }
+            else{
+                ArrayList<String> placesToVisit = new ArrayList<>(Arrays.asList(placesForOferTourPackage.getText().split(",")));
+                tourId = Main.evp1.offerTourPackage
+                        (
+                        eventTitleForOfferTourPackage.getText(),
+                        eventDateForOfferTourPackage.getValue(),
+                        Integer.parseInt(durationDaysForOfferTourPackage.getText()),
+                        Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
+                        Integer.parseInt(perPersonForOfferTourPackage.getText()),
+                        placesToVisit);
+            }
             massageBoxOfferBtn.setText("Offered tour successfully.");
             massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
             massageBoxOfferBtn.setVisible(true);
@@ -586,15 +610,30 @@ public class Controller implements Initializable {
 
     @FXML
     TableColumn<Event, String> paymentStatusCol = new TableColumn<>();
+
+
 //    Requested event for table view end
 
     //  Table view for employee end
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableRefresh();
-        displayArea.setText(str);
-        System.out.println("Init str: "+str);
+        try{
+            tableRefresh();
+            meid.setText(meidStr);
+            meTitle.setText(meTitleStr);
+            meDate.setText(meDateStr);
+            meDuration.setText(meDurationStr);
+            meNumOfParticipants.setText(meNumOfParticipantsStr);
+            mePlaces.setText(mePlacesStr);
+            if(meTasksStr!=null)meTasks.setText(meTasksStr.replaceAll("\n"," "));
+            else meTasks.setText(meTasksStr);
+            mePrice.setText(mePriceStr);
+
+            System.out.println("Init str: "+str);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -842,7 +881,22 @@ public class Controller implements Initializable {
 
     @FXML
     TextArea displayArea=new TextArea();
-
+    @FXML
+    Button meid=new Button("Event id");
+    @FXML
+    Button meTitle=new Button("Event Title");
+    @FXML
+    Button meDate=new Button("Event Date");
+    @FXML
+    Button meDuration=new Button("Duration");
+    @FXML
+    Button mePrice=new Button("Unit Price");
+    @FXML
+    Button meNumOfParticipants=new Button("Number of Participants");
+    @FXML
+    Button meTasks= new Button("Tasks");
+    @FXML
+    Button mePlaces= new Button("Places");
 
     public void showModal(Stage ownerStage) {
         try{
@@ -874,7 +928,7 @@ public class Controller implements Initializable {
     }
 // search tour end
 //    get data from table start
-    public static String str;
+    public static String meidStr,meTitleStr,meDateStr,meDurationStr,mePriceStr,meNumOfParticipantsStr,meTasksStr,mePlacesStr,str;
     public void getData(MouseEvent event) {
             try {
                 int selectedIndex = event.getSource() instanceof TableView ? ((TableView) event.getSource()).getSelectionModel().getSelectedIndex() : -1;
@@ -882,9 +936,21 @@ public class Controller implements Initializable {
                     return;
                 }
                 Event event1= eventTableViewForCustomer.getItems().get(selectedIndex);
-                str=event1.toString();
-                System.out.println(event1.toString());
+                meidStr="Event id: "+event1.getEventId();
+                meTitleStr="Event title: "+event1.getEventTitle();
+                meDateStr="Event date: "+event1.getEventDate().toString();
+                meDurationStr="Duration days of event: "+String.valueOf((Integer) event1.getDurationInDays());
+                mePriceStr="Per person fee: "+ String.valueOf((Integer) event1.getUnitPrice());
+                meNumOfParticipantsStr="Maximum number of participants: " +String.valueOf((Integer) event1.getNumOfParticipants());
+                if(event1.getTasks().size()>0)meTasksStr="Tasks of event: "+event1.getTasks().toString();
+                else meTasksStr="No tasks selected yet.";
+                TourPackage tp=(TourPackage)event1;
+                if(tp.getPlacesToVisit().size()>0)mePlacesStr="Visting places: "+tp.getPlacesToVisit().toString();
+                else mePlacesStr="No place selected yet.";
+                str=meidStr+meTitleStr+meDateStr+meDurationStr+mePriceStr+meNumOfParticipantsStr+meTasksStr+mePlacesStr;
+//                System.out.println(event1.toString());
                 System.out.println(str);
+                System.out.println("tasks: "+meTasksStr);
                 showModal(stage);
                 /*
                 System.out.println(event1.getEventId());
