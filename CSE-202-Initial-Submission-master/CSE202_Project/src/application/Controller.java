@@ -395,6 +395,7 @@ public class Controller implements Initializable {
             if (addTaskRadioBtn.isSelected()) {
                 try {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
+                    System.out.println(Main.evp1.getEvents());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                 } catch (Exception e) {
@@ -438,8 +439,8 @@ public class Controller implements Initializable {
 
     public void disableTaskDescription(ActionEvent event) {
         try {
-            if (startTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
-//                taskDescriptionTaskManage.setDisable(true);
+            if (addTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
+                taskDescriptionTaskManage.setDisable(true);
                 messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
                 messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
             } else {
