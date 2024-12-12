@@ -17,13 +17,13 @@
          <Label alignment="CENTER" layoutX="50.0" layoutY="43.0" prefHeight="26.0" prefWidth="1190.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as Employee" />
          <Button layoutX="226.0" layoutY="39.0" mnemonicParsing="false" onAction="#employeeHomeBtn" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Menu" />
          <Button layoutX="984.0" layoutY="39.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #FF5733; -fx-font-weight: bold; -fx-font-size: 16;" text="Log Out" />
-         <RadioButton fx:id="addTaskRadioBtn" layoutX="710.0" layoutY="177.0" mnemonicParsing="false" onAction="#disableTaskDescription" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Add Task">
+         <RadioButton fx:id="addTaskRadioBtn" layoutX="587.0" layoutY="178.0" mnemonicParsing="false" onAction="#disableTaskDescription" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Add Task">
             <toggleGroup>
                <ToggleGroup fx:id="task" />
             </toggleGroup>
          </RadioButton>
-         <RadioButton fx:id="startTaskRadioBtn" layoutX="592.0" layoutY="177.0" mnemonicParsing="false" onAction="#disableTaskDescription" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Start Task" toggleGroup="$task" />
-         <RadioButton fx:id="endTaskRadioBtn" layoutX="816.0" layoutY="174.0" mnemonicParsing="false" onAction="#disableTaskDescription" style="-fx-font-size: 16; -fx-font-weight: bold;" text="End Task" toggleGroup="$task" />
+         <RadioButton fx:id="startTaskRadioBtn" layoutX="697.0" layoutY="178.0" mnemonicParsing="false" onAction="#disableTaskDescription" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Start Task" toggleGroup="$task" />
+         <RadioButton fx:id="endTaskRadioBtn" layoutX="816.0" layoutY="178.0" mnemonicParsing="false" onAction="#disableTaskDescription" style="-fx-font-size: 16; -fx-font-weight: bold;" text="End Task" toggleGroup="$task" />
          <TextField fx:id="eventIdTaskManage" layoutX="587.0" layoutY="136.0" style="-fx-font-size: 16;" />
          <TextField fx:id="taskTitleTaskManage" layoutX="587.0" layoutY="210.0" style="-fx-font-size: 16;" />
          <Label layoutX="493.0" layoutY="141.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Event id:" />

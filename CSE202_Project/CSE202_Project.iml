@@ -11,7 +11,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../My-Java-Archive/out/artifacts/My_Java_Archive_jar/My-Java-Archive.jar!/" />
+          <root url="jar://$MODULE_DIR$/../My-Java-Archive/out/artifacts/My_Java_Archive_jar/My-Java-Archive.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
