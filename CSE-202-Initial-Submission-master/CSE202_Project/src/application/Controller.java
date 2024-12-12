@@ -439,7 +439,7 @@ public class Controller implements Initializable {
 
     public void disableTaskDescription(ActionEvent event) {
         try {
-            if (addTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
+            if (startTaskRadioBtn.isSelected() || endTaskRadioBtn.isSelected()) {
                 taskDescriptionTaskManage.setDisable(true);
                 messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
                 messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
