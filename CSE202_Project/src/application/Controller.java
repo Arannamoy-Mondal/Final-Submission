@@ -398,10 +398,12 @@ public class Controller implements Initializable {
                     System.out.println(Main.evp1.getEvents());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
+                    messgaeBoxTaskManage.setVisible(true);
                 } catch (Exception e) {
 //                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
                     messgaeBoxTaskManage.setText(e.getMessage().toString());
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                    messgaeBoxTaskManage.setVisible(true);
                 }
                 tableRefresh();
             } else if (startTaskRadioBtn.isSelected()) {
@@ -410,9 +412,11 @@ public class Controller implements Initializable {
                     Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task start successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
+                    messgaeBoxTaskManage.setVisible(true);
                 } catch (Exception e) {
                     messgaeBoxTaskManage.setText(e.toString());
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                    messgaeBoxTaskManage.setVisible(true);
                 }
                 tableRefresh();
             } else if (endTaskRadioBtn.isSelected()) {
@@ -421,19 +425,23 @@ public class Controller implements Initializable {
                     Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task completed successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
+                    messgaeBoxTaskManage.setVisible(true);
                 } catch (Exception e) {
 //                    System.out.println(e.toString());
                     messgaeBoxTaskManage.setText(e.getMessage().toString());
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                    messgaeBoxTaskManage.setVisible(true);
                 }
                 tableRefresh();
             } else {
                 messgaeBoxTaskManage.setText("Please select one of the following actions: Add task, Start task, End task.");
                 messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                messgaeBoxTaskManage.setVisible(true);
             }
         } catch (Exception e) {
             messgaeBoxTaskManage.setText(e.getMessage().toString());
             messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733");
+            messgaeBoxTaskManage.setVisible(true);
         }
     }
 
@@ -443,14 +451,17 @@ public class Controller implements Initializable {
                 taskDescriptionTaskManage.setDisable(true);
                 messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
                 messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                messgaeBoxTaskManage.setVisible(true);
             } else {
                 taskDescriptionTaskManage.setDisable(false);
                 messgaeBoxTaskManage.setText("Please enter correct event id.");
                 messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                messgaeBoxTaskManage.setVisible(true);
             }
         } catch (Exception e) {
             messgaeBoxTaskManage.setText("Please enter correct event id and task title.");
             messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+            messgaeBoxTaskManage.setVisible(true);
         }
     }
 
