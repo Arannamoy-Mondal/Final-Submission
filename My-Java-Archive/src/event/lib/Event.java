@@ -156,7 +156,7 @@ public abstract class Event implements Serializable {
     }
 
     public ArrayList<Task> getTasks() {
-        return tasks.toString();
+        return tasks;
     }
 
     @Override
