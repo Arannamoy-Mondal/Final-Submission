@@ -626,10 +626,11 @@ public class Controller implements Initializable {
             meDuration.setText(meDurationStr);
             meNumOfParticipants.setText(meNumOfParticipantsStr);
             mePlaces.setText(mePlacesStr);
-            if(meTasksStr!=null)meTasks.setText(meTasksStr.replaceAll("\n"," "));
-            else meTasks.setText(meTasksStr);
+//            if(meTasksStr!=null)meTasks.setText(meTasksStr.replaceAll("\n","\n"));
+//            else meTasks.setText(meTasksStr);
             mePrice.setText(mePriceStr);
-
+            meTasks.setVisible(false);
+            if(meTasksStr!=null)System.out.println(meTasksStr.replaceAll("\n"," "));
             System.out.println("Init str: "+str);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -947,9 +948,9 @@ public class Controller implements Initializable {
                 TourPackage tp=(TourPackage)event1;
                 if(tp.getPlacesToVisit().size()>0)mePlacesStr="Visting places: "+tp.getPlacesToVisit().toString();
                 else mePlacesStr="No place selected yet.";
-                str=meidStr+meTitleStr+meDateStr+meDurationStr+mePriceStr+meNumOfParticipantsStr+meTasksStr+mePlacesStr;
+                str=meidStr+meTitleStr+meDateStr+meDurationStr+mePriceStr+meNumOfParticipantsStr+mePlacesStr;
 //                System.out.println(event1.toString());
-                System.out.println(str);
+                System.out.println("Str2024 :"+str);
                 System.out.println("tasks: "+meTasksStr);
                 showModal(stage);
                 /*

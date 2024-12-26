@@ -78,12 +78,20 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        String sD = startDate.format(formatter);
-//        String eD = endDate.format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         //formatter.
-        return "[ Title: "+title + ",status: " + status + ", startDate: " + startDate + ", endDate: "
-                + endDate+" ]";
+        if(startDate==null){
+
+            return "[ Title: "+title + ",status: " + status + ", start date: TBA " + ", end date: TBA ]";
+        }
+        else if(endDate==null){
+            String sD = startDate.format(formatter);
+            return "[ Title: "+title + ",status: " + status + ", start date: " + sD + ", end date: TBA ]";
+        }
+        String sD = startDate.format(formatter);
+        String eD = endDate.format(formatter);
+        return "[ Title: "+title + ",status: " + status + ", start date: " + sD + ", end date: "
+                + eD+" ]";
     }
 
 
