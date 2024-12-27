@@ -159,14 +159,23 @@ public class Controller implements Initializable {
     TextField participantForRegisterForTour;
     @FXML
     TextField contactForRegisterForTour;
-
+    @FXML
+    Button messageBoxForRegisterTour;
     public void registerTourSubmitBtn(ActionEvent e) {
         try {
             Main.evp1.registerForTour(tourIdForRegisterForTour.getText(), Integer.parseInt(participantForRegisterForTour.getText()), contactForRegisterForTour.getText());
 //            System.out.println("Done");
             tableRefresh();
+            messageBoxForRegisterTour.setText("Registered tour.");
+            messageBoxForRegisterTour.setVisible(true);
+//            #0af02d
+            messageBoxForRegisterTour.setStyle("-fx-background-color: #0af02d");
         } catch (Exception ex) {
 //            System.out.println("Error in registerTourSubmitBtn");
+            messageBoxForRegisterTour.setText(ex.getMessage());
+            messageBoxForRegisterTour.setVisible(true);
+            messageBoxForRegisterTour.setStyle("-fx-background-color: #FF5733");
+
         }
     }
 

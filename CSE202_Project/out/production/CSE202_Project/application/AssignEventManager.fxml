@@ -21,7 +21,7 @@
             <Button layoutX="650.0" layoutY="241.0" mnemonicParsing="false" onAction="#assignEventManager" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Assign" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="320.0" prefHeight="26.0" prefWidth="1138.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Events Status" textAlignment="JUSTIFY" />
             <!--            <ListView fx:id="allEventsList" layoutX="36.0" layoutY="365.0" prefHeight="426.0" prefWidth="1138.0" />-->
-            <TableView fx:id="eventTableViewForEmployee" layoutX="85.0" layoutY="357.0" prefHeight="326.0" prefWidth="1200">
+            <TableView fx:id="eventTableViewForEmployee" layoutX="85.0" layoutY="357.0" prefHeight="262.0" prefWidth="1200">
                 <columns>
                     <TableColumn fx:id="eventIdTableViewForEmployee" prefWidth="150" text="Id" />
                     <TableColumn fx:id="eventTitleTableViewForEmployee" prefWidth="150" text="Event Title" />
