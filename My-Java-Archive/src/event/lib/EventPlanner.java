@@ -127,6 +127,7 @@ package event.lib;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class EventPlanner {
     public String name;
@@ -153,7 +154,7 @@ public class EventPlanner {
                 return it;
             }
         }
-        throw new Exception("This event does not exist.");
+        throw new Exception("This event id does not exist.");
     }
 
     // method b
@@ -163,7 +164,7 @@ public class EventPlanner {
                 return it;
             }
         }
-        throw new Exception("This event does not exist.");
+        throw new Exception("This event id does not exist.");
     }
 
     // method c
@@ -192,7 +193,12 @@ public class EventPlanner {
 
     // method e
     public String requestEvent(String eventTitle, String customerContact, LocalDate eventDate, int durationInDays,
-                               int numOfParticipants) {
+                               int numOfParticipants) throws Exception {
+        if(eventTitle.length()<5)throw new Exception("Event title length must be greater than 5.");
+        else if(customerContact.length()!=11)throw new Exception("Customer contact length must be equal to 11.");
+        else if(!(eventDate instanceof LocalDate))throw new Exception("Enter correct date format.");
+        else if(durationInDays<1)throw new Exception("Duration must be greater than 0.");
+        else if(numOfParticipants<1)throw new Exception("Number of participants must be greater than 0.");
         CorporateEvent chk = new CorporateEvent(eventTitle, customerContact, eventDate, durationInDays,
                 numOfParticipants);
         requestedEvents.add(chk);
@@ -262,7 +268,8 @@ public class EventPlanner {
     public void startEventTask(String eventID, String title) throws Exception {
         Event chk = findEvent(eventID);
         if (chk != null) {
-            chk.startTask(title);
+            boolean ok = chk.startTask(title);
+            if(ok==false)throw new Exception("Task already started or not found.");
 //            System.out.println("Done");
         }
 //        System.out.println("Not Done");
@@ -272,7 +279,8 @@ public class EventPlanner {
     public void completeEventTask(String eventID, String title) throws Exception {
         Event chk = findEvent(eventID);
         if (chk != null) {
-            chk.completeTask(title);
+            boolean ok=chk.completeTask(title);
+            if(ok==false)throw new Exception("Task already started or not found.");
 //            System.out.println("Done");
         }
 //        System.out.println("Not Done");

@@ -114,6 +114,9 @@ public class Controller implements Initializable {
 
 ////            System.out.println(eventTitleForRequestForCorporateEvent.getText() + eventDateForRequestForCorporateEvent.getValue() + customerContactForRequestForCorporateEvent.getText() + durationDaysForRequestForCorporateEvent.getText() + numberOfParticipantsForRequestForCorporateEvent.getText());
 //            String title=eventTitleForRequestForCorporateEvent.getText()
+//            if(eventTitleForRequestForCorporateEvent.getText().length()>0 && customerContactForRequestForCorporateEvent.getText().length()>0
+//            && eventDateForRequestForCorporateEvent
+//            ){
             String id=Main.evp1.requestEvent(eventTitleForRequestForCorporateEvent.getText(),
                     customerContactForRequestForCorporateEvent.getText(),
                     eventDateForRequestForCorporateEvent.getValue(),
@@ -124,10 +127,16 @@ public class Controller implements Initializable {
             messageBoxForRequestForCorporateEvent.setVisible(true);
             messageBoxForRequestForCorporateEvent.setStyle("-fx-background-color: #0af02d;");
 ////            System.out.println(eventDateForRequestForCorporateEvent.getValue().getClass().getName());
+//            }
+//            else{
+//                messageBoxForRequestForCorporateEvent.setText("Please enter the corresponding event data properly.");
+//                messageBoxForRequestForCorporateEvent.setVisible(true);
+//                messageBoxForRequestForCorporateEvent.setStyle("-fx-background-color: #FF5733;");
+//            }
 
         } catch (Exception er) {
 //            System.out.println("Error in requestForCorporateEventSubmitBtn");
-            messageBoxForRequestForCorporateEvent.setText(er.getMessage());
+            messageBoxForRequestForCorporateEvent.setText("Please enter the corresponding event data properly. "+er.getMessage());
             messageBoxForRequestForCorporateEvent.setVisible(true);
             messageBoxForRequestForCorporateEvent.setStyle("-fx-background-color: #FF5733;");
         }
@@ -428,45 +437,60 @@ public class Controller implements Initializable {
     public void manageTasks(ActionEvent event) {
         try {
             if (addTaskRadioBtn.isSelected()) {
-                try {
+//                try {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
                     System.out.println(Main.evp1.getEvents());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                     messgaeBoxTaskManage.setVisible(true);
-                } catch (Exception e) {
-//                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
-                    messgaeBoxTaskManage.setText(e.getMessage().toString());
-                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
-                    messgaeBoxTaskManage.setVisible(true);
-                }
+//                } catch (Exception e) {
+////                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
+//                    messgaeBoxTaskManage.setText(e.getMessage().toString());
+//                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+//                    messgaeBoxTaskManage.setVisible(true);
+//                }
                 tableRefresh();
             } else if (startTaskRadioBtn.isSelected()) {
 ////                System.out.println("Star Task");
-                try {
+//                try {
+                    System.out.println("Task title manage:"+taskTitleTaskManage.getText());
+                    if(taskTitleTaskManage.getText().length()>0)
+                    {
                     Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task start successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                     messgaeBoxTaskManage.setVisible(true);
-                } catch (Exception e) {
-                    messgaeBoxTaskManage.setText(e.toString());
-                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
-                    messgaeBoxTaskManage.setVisible(true);
-                }
+                    }
+                    else{
+                        messgaeBoxTaskManage.setText("Please enter data correctly.");
+                        messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733; -fx-font-weight: bold; -fx-font-size: 16;");
+                        messgaeBoxTaskManage.setVisible(true);
+                    }
+//                } catch (Exception e) {
+////                    messgaeBoxTaskManage.setText(e.toString());
+//                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+//                    messgaeBoxTaskManage.setVisible(true);
+//                }
                 tableRefresh();
             } else if (endTaskRadioBtn.isSelected()) {
 ////                System.out.println("End Btn");
-                try {
+//                try {
+                    if(taskTitleTaskManage.getText()!=null){
                     Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task completed successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
-                    messgaeBoxTaskManage.setVisible(true);
-                } catch (Exception e) {
-//                    System.out.println(e.toString());
-                    messgaeBoxTaskManage.setText(e.getMessage().toString());
-                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
-                    messgaeBoxTaskManage.setVisible(true);
-                }
+                    messgaeBoxTaskManage.setVisible(true);}
+                    else{
+//                        messgaeBoxTaskManage.setText("Please enter data correctly.");
+                        messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+                        messgaeBoxTaskManage.setVisible(true);
+                    }
+//                } catch (Exception e) {
+////                    System.out.println(e.toString());
+////                    messgaeBoxTaskManage.setText(e.getMessage());
+//                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
+//                    messgaeBoxTaskManage.setVisible(true);
+//                }
                 tableRefresh();
             } else {
                 messgaeBoxTaskManage.setText("Please select one of the following actions: Add task, Start task, End task.");
@@ -474,8 +498,8 @@ public class Controller implements Initializable {
                 messgaeBoxTaskManage.setVisible(true);
             }
         } catch (Exception e) {
-            messgaeBoxTaskManage.setText(e.getMessage().toString());
-            messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733");
+            messgaeBoxTaskManage.setText(e.getMessage());
+            messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;");
             messgaeBoxTaskManage.setVisible(true);
         }
     }
