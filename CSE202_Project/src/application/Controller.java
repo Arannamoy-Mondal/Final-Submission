@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -632,6 +634,8 @@ public class Controller implements Initializable {
             meTasks.setVisible(false);
             if(meTasksStr!=null)System.out.println(meTasksStr.replaceAll("\n"," "));
             System.out.println("Init str: "+str);
+            freshBtnForSE.setVisible(false);
+            esForSE.setVisible(true);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -824,6 +828,12 @@ public class Controller implements Initializable {
     @FXML
     TextField searchTourId=new TextField();
 
+    @FXML
+    Label esForSE=new Label();
+
+    @FXML
+    Button freshBtnForSE=new Button();
+
     public void searchForTour(ActionEvent event) {
 //        root.getChildren().add(tableView);
 //        stage.show();
@@ -833,33 +843,42 @@ public class Controller implements Initializable {
 
 //        tableView.setItems(list);
         TableView<TourPackage> tableView = new TableView<>();
-        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
+//        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
         TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
         TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
         TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
         TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
         TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
         TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
-        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
+//        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
         tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
         tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
-        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
         tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
-        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
         tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
-        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
         tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
         tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
-        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
+        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
+//        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
+//        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 150;");
+        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants);
         tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
-
         System.out.println(searchTourId.getText());
-        showModal(stage,tableView);
+//        tableView.setStyle("layoutX=\"53.0\" layoutY=\"295.0\" prefHeight=\"378.0\" prefWidth=\"1050\"");
+        tableView.setLayoutX(53);
+        tableView.setLayoutY(378);
+        tableView.prefWidth(1300);
+        tableView.prefHeight(378);
+        eventTableViewForCustomerRegisterTour.getItems().clear();
+        eventTableViewForCustomerRegisterTour.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
+        esForSE.setVisible(false);
+        freshBtnForSE.setVisible(true);
+
+//        showModal(stage,tableView);
 //        showModal(stage);
     }
 
@@ -873,9 +892,8 @@ public class Controller implements Initializable {
         Button closeButton = new Button("Close Modal");
         closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
         modalRoot.getChildren().add(closeButton);
-        Scene modalScene = new Scene(modalRoot, Toolkit.getDefaultToolkit().getScreenSize().getHeight(), Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        Scene modalScene = new Scene(modalRoot);
         modalStage.setTitle("Modal Dialog");
-        modalStage.setMaximized(true);
         modalStage.setScene(modalScene);
         modalStage.showAndWait(); // // Show the modal and block interaction with the main window
     }
@@ -906,7 +924,7 @@ public class Controller implements Initializable {
             modalStage.initOwner(ownerStage);
             modalStage.initModality(Modality.APPLICATION_MODAL);
             Timeline timeline = new Timeline(
-                    new KeyFrame(javafx.util.Duration.seconds(60),
+                    new KeyFrame(javafx.util.Duration.seconds(5),
                             event -> modalStage.close())
             );
             timeline.setCycleCount(1); // Run only once

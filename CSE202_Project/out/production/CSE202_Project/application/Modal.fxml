@@ -13,10 +13,10 @@
             <Button fx:id="meTitle" layoutX="4.0" layoutY="148.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Event Title" />
             <Button fx:id="meDate" layoutX="4.0" layoutY="193.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Event Date" />
             <Button fx:id="meDuration" layoutX="4.0" layoutY="238.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Event Duration" />
-            <Button fx:id="meNumOfParticipants" layoutX="3.0" layoutY="281.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Number Of Participants" />
-            <Button fx:id="mePlaces" layoutY="523.0" prefHeight="142.0" prefWidth="1310.0" style="-fx-wrap-text: true; -fx-background-color: black; -fx-font-size: 16; -fx-text-fill: white;" text="Task" />
-            <Button fx:id="meTasks" layoutX="3.0" layoutY="382.0" prefHeight="128.0" prefWidth="1310.0" style="-fx-wrap-text: true; -fx-background-color: black; -fx-font-size: 16; -fx-text-fill: white;" text="Places" />
-            <Button fx:id="mePrice" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Price" />
+            <Button fx:id="meNumOfParticipants" layoutX="4.0" layoutY="281.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Number Of Participants" />
+            <Button fx:id="mePlaces" layoutX="5.0" layoutY="378.0" prefHeight="142.0" prefWidth="1310.0" style="-fx-wrap-text: true; -fx-background-color: black; -fx-font-size: 16; -fx-text-fill: white;" text="Task" />
+            <Button fx:id="meTasks" layoutX="9.0" layoutY="611.0" prefHeight="128.0" prefWidth="1310.0" style="-fx-wrap-text: true; -fx-background-color: black; -fx-font-size: 16; -fx-text-fill: white;" text="Places" />
+            <Button fx:id="mePrice" layoutX="4.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Price" />
 <!--            <Button  layoutX="4.0" layoutY="487.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1310.0" style="-fx-alignment: center; -fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16;" text="Button" />-->
             <!--             8-->
         </children>
