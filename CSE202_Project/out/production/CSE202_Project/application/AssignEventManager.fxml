@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="center" minHeight="-Infinity" minWidth="-Infinity" prefHeight="846.0" prefWidth="1386.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="846.0" prefWidth="1378.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane fx:id="scene_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="1378.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
         <children>
             <Label alignment="CENTER" layoutX="129.0" layoutY="37.0" prefHeight="26.0" prefWidth="1138.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Logged in as Employee" />
             <Button layoutX="451.0" layoutY="32.0" mnemonicParsing="false" onAction="#employeeHomeBtn" style="-fx-font-size: 16; -fx-background-color: #0284c7; -fx-font-weight: bold;" text="Menu" />
@@ -20,8 +20,8 @@
             <Label layoutX="468.0" layoutY="186.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Manager Name:" />
             <Button layoutX="650.0" layoutY="241.0" mnemonicParsing="false" onAction="#assignEventManager" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Assign" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="320.0" prefHeight="26.0" prefWidth="1138.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Events Status" textAlignment="JUSTIFY" />
-<!--            <ListView fx:id="allEventsList" layoutX="36.0" layoutY="365.0" prefHeight="426.0" prefWidth="1138.0" />-->
-            <TableView fx:id="eventTableViewForEmployee" layoutX="85.0" layoutY="357.0" prefHeight="373.0" prefWidth="1200">
+            <!--            <ListView fx:id="allEventsList" layoutX="36.0" layoutY="365.0" prefHeight="426.0" prefWidth="1138.0" />-->
+            <TableView fx:id="eventTableViewForEmployee" layoutX="85.0" layoutY="357.0" prefHeight="326.0" prefWidth="1200">
                 <columns>
                     <TableColumn fx:id="eventIdTableViewForEmployee" prefWidth="150" text="Id" />
                     <TableColumn fx:id="eventTitleTableViewForEmployee" prefWidth="150" text="Event Title" />
@@ -33,7 +33,7 @@
                     <TableColumn fx:id="allTaskListForEmployee" prefWidth="150" text="Tasks" />
                 </columns>
             </TableView>
-         <Button fx:id="messageBoxForAssignEventManager" visible="false" layoutX="13.0" layoutY="86.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1351.0" text="Button" />
+            <Button fx:id="messageBoxForAssignEventManager" layoutX="13.0" layoutY="86.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="1351.0" text="Button" visible="false" />
         </children>
     </AnchorPane>
 </VBox>
