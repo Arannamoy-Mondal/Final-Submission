@@ -709,15 +709,15 @@ public class Controller implements Initializable {
                 }
             }
 
-            if (Main.evp1.getRequestedEvents().size() < 1) {
-                requestedEventTableViewForEmployee.getItems().clear();
-                requestedEventTableViewForEmployee.setVisible(false);
-            } else {
+//            if (Main.evp1.getRequestedEvents().size() < 1) {
+//                requestedEventTableViewForEmployee.getItems().clear();
+//                requestedEventTableViewForEmployee.setVisible(false);
+//            } else {
                 requestedEventTableViewForEmployee.getItems().clear();
                 for (Event e : Main.evp1.getRequestedEvents()) {
                     requestedEventTableViewForEmployee.getItems().add(e);
                 }
-            }
+//            }
 // Table view for customer start
             eventIdTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventId"));
             eventTitleTableViewForCustomer.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));

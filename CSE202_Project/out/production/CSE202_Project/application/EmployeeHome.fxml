@@ -14,7 +14,7 @@
          <Font name="System Bold" size="12.0" />
       </font>
    </Button>
-   <Button layoutX="532.0" layoutY="333.0" mnemonicParsing="false" onAction="#mangeEventsBtn" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Manage Event">
+   <Button layoutX="532.0" layoutY="333.0" mnemonicParsing="false" onAction="#mangeEventsBtn" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Accept Event">
       <font>
          <Font name="System Bold" size="12.0" />
       </font>
