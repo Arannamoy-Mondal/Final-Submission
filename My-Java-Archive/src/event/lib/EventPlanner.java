@@ -266,7 +266,7 @@ public class EventPlanner {
 //            System.out.println("Done");
 //            return true;
         }
-        throw new Exception("Event id not found.");
+        else throw new Exception("Event id not found.");
 //        System.out.println("Not Done");
 //        return false;
     }
@@ -279,6 +279,7 @@ public class EventPlanner {
             if(ok==false)throw new Exception("Task already started or not found.");
 //            System.out.println("Done");
         }
+        else throw new Exception("Event id not found.");
 //        System.out.println("Not Done");
     }
 
@@ -290,6 +291,7 @@ public class EventPlanner {
             if(ok==false)throw new Exception("Task already started or not found.");
 //            System.out.println("Done");
         }
+        else throw new Exception("Event id not found.");
 //        System.out.println("Not Done");
     }
 

@@ -4,8 +4,6 @@ import event.lib.*;
 import event.lib.Event;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,18 +23,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import javafx.stage.WindowEvent;
 import javafx.util.converter.IntegerStringConverter;
-
-import static java.time.Duration.*;
 
 public class Controller implements Initializable {
     Pane root;
@@ -315,7 +308,7 @@ public class Controller implements Initializable {
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
             String tourId;
-            if(placesForOferTourPackage.getText().length()>0){
+            if(placesForOferTourPackage.getText()==null){
             tourId = Main.evp1.offerTourPackage(
                     eventTitleForOfferTourPackage.getText(),
                     eventDateForOfferTourPackage.getValue(),
@@ -673,6 +666,7 @@ public class Controller implements Initializable {
             meTasks.setVisible(false);
             if(meTasksStr!=null)System.out.println(meTasksStr.replaceAll("\n"," "));
             System.out.println("Init str: "+str);
+            str="";
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -847,9 +841,9 @@ public class Controller implements Initializable {
 //    Aranna's code end
 
     //    search tour start
-    public void searchForTourBtn(ActionEvent event) {
+    public void searchForTourBtnForCustomer(ActionEvent event) {
         try {
-            root = FXMLLoader.load(getClass().getResource("SearchEvent.fxml"));
+            root = FXMLLoader.load(getClass().getResource("SearchEventForCustomer.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //        scene = new Scene(root);
             scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
@@ -861,30 +855,93 @@ public class Controller implements Initializable {
             System.out.println("Something went wrong");
         }
     }
+    public void searchForTourBtnForEmployee(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("SearchEventForEmployee.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+            scene = new Scene(root, Toolkit.getDefaultToolkit().getScreenSize().getWidth(), Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Search Event");
 
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+    }
     @FXML
     TextField searchTourId=new TextField();
 
-    public void searchForTour(ActionEvent event) {
-        ArrayList<TourPackage> tp=Main.evp1.searchForTourPackages(searchTourId.getText());
-        eventTableViewForCustomerRegisterTour.getItems().clear();
-        if(tp.size()>0){
-            eventTableViewForCustomerRegisterTour.getItems().addAll(tp);
+    public void searchForTourForCustomer(ActionEvent event) {
+//        TableView<TourPackage> tableView = new TableView<>();
+//        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
+//        TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
+//        TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
+//        TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
+//        TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
+//        TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
+//        TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
+//        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
+//        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+//        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+//        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+//        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+//        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+//        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+//        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
+//        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
+//        tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
+//        System.out.println(searchTourId.getText());
+        ArrayList<TourPackage>tourList=new ArrayList<>();
+        for(Event it:Main.evp1.searchForTourPackages(searchTourId.getText())) {
+            if(it instanceof TourPackage)tourList.add((TourPackage) it);
         }
+        showModal(stage,tourList);
     }
 
-    public void showModal(Stage ownerStage,TableView<TourPackage>tableView) {
-        // Create a new stage for the modal dialog
+    public void showModal(Stage ownerStage,ArrayList<TourPackage>events) {
+        TableView<TourPackage> tableView = new TableView<>();
+        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
+        TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
+        TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
+        TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
+        TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
+        TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
+        TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
+        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
+        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
+        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
+        tableView.getItems().addAll(events);
+//        System.out.println(searchTourId.getText());
         Stage modalStage = new Stage();
         modalStage.initOwner(ownerStage);  // Set the owner of the modal to be the main window
         modalStage.initModality(Modality.WINDOW_MODAL);  // Make the window modal
-        // Create a simple layout for the modal
         VBox modalRoot = new VBox(tableView);
         Button closeButton = new Button("Close Modal");
         closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
         modalRoot.getChildren().add(closeButton);
         Scene modalScene = new Scene(modalRoot, Toolkit.getDefaultToolkit().getScreenSize().getHeight(), Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        modalStage.setTitle("Modal Dialog");
+        modalStage.setTitle("Result");
         modalStage.setMaximized(true);
         modalStage.setScene(modalScene);
         modalStage.showAndWait(); // // Show the modal and block interaction with the main window
@@ -921,12 +978,75 @@ public class Controller implements Initializable {
             );
             timeline.setCycleCount(1); // Run only once
             timeline.play();
-            Pane modalRoot =FXMLLoader.load(getClass().getResource("Modal.fxml"));
+            Pane modalRoot =FXMLLoader.load(getClass().getResource("Modal1.fxml"));
 //            closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
 //            closeButton.setStyle("-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;-fx-pref-width: 250;-fx-pref-height: 250;text: \"Close\";");
 //            closeButton.setText("Close");
             Scene modalScene = new Scene(modalRoot);
-            modalStage.setTitle("Modal Dialog");
+            modalStage.setTitle("Result");
+            modalStage.setMaximized(true);
+            modalStage.setScene(modalScene);
+            modalStage.showAndWait();
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @FXML
+    TableView<TourPackage> tableViewModal = new TableView<>();
+//        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
+    @FXML
+    TableColumn<TourPackage, String> tourIdColModal = new TableColumn<>("Tour Id");
+    @FXML
+    TableColumn<TourPackage, String> tourTitleColModal = new TableColumn<>("Tour Name");
+    @FXML
+    TableColumn<TourPackage, LocalDate> tourDateModal = new TableColumn<>("Tour Description");
+    @FXML
+    TableColumn<TourPackage, Integer> tourDurationModal = new TableColumn<>("Tour Duration");
+    @FXML
+    TableColumn<TourPackage, Integer> tourPriceModal = new TableColumn<>("Unit Price");
+    @FXML
+    TableColumn<TourPackage, Integer> tourNumOfParticipantsModal = new TableColumn<>("Tour Number of Participants");
+//    @FXML
+//    TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
+//        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
+//        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
+//        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
+//        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
+//        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+//        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
+//        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
+//        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
+//        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
+
+    public void showModal(Stage ownerStage,boolean ok,ArrayList<Event>events) {
+        try{
+
+            Stage modalStage = new Stage();
+            modalStage.initOwner(ownerStage);
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            Timeline timeline = new Timeline(
+                    new KeyFrame(javafx.util.Duration.seconds(60),
+                            event -> modalStage.close())
+            );
+            timeline.setCycleCount(1); // Run only once
+            timeline.play();
+            Pane modalRoot =FXMLLoader.load(getClass().getResource("Modal2.fxml"));
+//            closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
+//            closeButton.setStyle("-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;-fx-pref-width: 250;-fx-pref-height: 250;text: \"Close\";");
+//            closeButton.setText("Close");
+            Scene modalScene = new Scene(modalRoot);
+            eventTableViewForCustomerRegisterTour.getItems().addAll(events);
+            modalStage.setTitle("Result");
             modalStage.setMaximized(true);
             modalStage.setScene(modalScene);
             modalStage.showAndWait();

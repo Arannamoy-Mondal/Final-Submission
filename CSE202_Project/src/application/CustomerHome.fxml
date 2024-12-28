@@ -13,7 +13,7 @@
       <Button layoutX="553.0" layoutY="352.0" mnemonicParsing="false" onAction="#payBillBtn" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0284c7; -fx-font-size: 16; -fx-font-weight: bold;" text="Pay Bill" />
       <Button layoutX="561.0" layoutY="400.0" mnemonicParsing="false" onAction="#logOutBtn" style="-fx-background-color: #FF5733; -fx-font-weight: bold; -fx-font-size: 16;" text="Logout" />
       <Text layoutX="15.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Logged in as Customer" textAlignment="CENTER" wrappingWidth="1170.9366760253906" />
-         <Button layoutX="528.0" layoutY="258.0" mnemonicParsing="false" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Search For Tour" onAction="#searchForTourBtn"/>
+         <Button layoutX="528.0" layoutY="258.0" mnemonicParsing="false" style="-fx-background-color: #0284c7; -fx-font-weight: bold; -fx-font-size: 16;" text="Search For Tour" onAction="#searchForTourBtnForCustomer"/>
    </children>
 </AnchorPane>
 </VBox>
