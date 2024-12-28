@@ -1,6 +1,6 @@
 # Introduction: <p>This is a basic event management project based on JavaFX.</p>
-# Requirement : <a href="https://gluonhq.com/products/javafx/"> JavaFX SDK, JDK 23, SceneBuilder For Editing<a>
-# Must use JDK 23 for running JAR File. Download link: <a href="https://github.com/Arannamoy-Mondal/Final-Submission/raw/refs/heads/main/CSE202_Project/out/artifacts/CSE202_Project_jar/CSE202_Project.jar">Click Here</a>
+# Requirement : <a href="https://gluonhq.com/products/javafx/"> JavaFX SDK</a>,<a href="https://download.oracle.com/java/23/latest/jdk-23_windows-x64_bin.exe"> JDK 23</a>, SceneBuilder For Editing
+# Must use JDK 23 for running JAR File. JAR file Download link: <a href="https://github.com/Arannamoy-Mondal/Final-Submission/raw/refs/heads/main/CSE202_Project/out/artifacts/CSE202_Project_jar/CSE202_Project.jar">Click Here</a>
 # .bat file command for run.bat 
 ```txt
 java --module-path path\javafx\lib --add-modules javafx.controls,javafx.fxml -jar JarFileName.jar
