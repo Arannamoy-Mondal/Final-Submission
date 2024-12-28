@@ -241,7 +241,7 @@ public class EventPlanner {
             if(((TourPackage)chk).registerForTour(participants, contact)==false)throw new Exception("Registration limit over.");
         }
 //        System.out.println(events);
-        throw new Exception("Event id not found.");
+        else throw new Exception("Event id not found.");
 
     }
 
@@ -387,7 +387,7 @@ public class EventPlanner {
         String ans="";
         for(Event it : events){
             if(it instanceof TourPackage){
-                System.out.println(((TourPackage) it).customerContacts);
+//                System.out.println(((TourPackage) it).customerContacts);
                 ans+="Id:"+(it.getEventId()+", Tour title: "+it.getEventTitle()+", Date: "+it.getEventDate()+", Durations day: "+it.getDurationInDays()+", Unit Price: "+it.getUnitPrice()+", Total Slots: "+it.getNumOfParticipants()+", Registered People: "+((TourPackage) it).getNumOfRegisteredParticipants());
                 ans+="\n";
             }
@@ -426,7 +426,7 @@ public class EventPlanner {
             if(!requestedFile.exists()){
                 requestedFile.createNewFile();
             }
-            System.out.println(eventFile.getPath());
+//            System.out.println(eventFile.getPath());
             ObjectInputStream oos = new ObjectInputStream(new FileInputStream(eventFile));
             events = (ArrayList<Event>) oos.readObject();
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(requestedFile));
@@ -435,7 +435,7 @@ public class EventPlanner {
             oos.close();
         }
         catch (Exception e){
-            System.out.println("Error given load data");
+//            System.out.println("Error given load data");
         }
     }
     //    load data end
@@ -449,7 +449,7 @@ public class EventPlanner {
                 eventFile.createNewFile();
             }
             catch (Exception e){
-                System.out.println("Error given delete data");
+//                System.out.println("Error given delete data");
             }
         }
         if(requestedFile.exists()){
@@ -458,7 +458,7 @@ public class EventPlanner {
                 requestedFile.createNewFile();
             }
             catch (Exception e){
-                System.out.println("Error given delete data");
+//                System.out.println("Error given delete data");
             }
         }
     }

@@ -205,9 +205,9 @@ public class Controller implements Initializable {
 
     public void showTotalBillForPayBill(ActionEvent e) {
         try {
-            System.out.println(eventIdForPayBill.getText());
+//            System.out.println(eventIdForPayBill.getText());
             double tmp = Main.evp1.payBill(eventIdForPayBill.getText());
-            System.out.println(tmp);
+//            System.out.println(tmp);
             if ((int) tmp > 0) {
                 totalBillForPayBill.setText("Total bill: " + tmp);
                 totalBillForPayBill.setVisible(true);
@@ -446,7 +446,7 @@ public class Controller implements Initializable {
 //                try {
                 if(eventIdTaskManage.getText().length()>0 && taskTitleTaskManage.getText().length()>0 && taskDescriptionTaskManage.getText().length()>0) {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
-                    System.out.println(Main.evp1.getEvents());
+//                    System.out.println(Main.evp1.getEvents());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                     messgaeBoxTaskManage.setVisible(true);
@@ -467,7 +467,7 @@ public class Controller implements Initializable {
             } else if (startTaskRadioBtn.isSelected()) {
 ////                System.out.println("Star Task");
 //                try {
-                    System.out.println("Task title manage:"+taskTitleTaskManage.getText());
+//                    System.out.println("Task title manage:"+taskTitleTaskManage.getText());
                     if(taskTitleTaskManage.getText().length()>0)
                     {
                     Main.evp1.startEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
@@ -677,18 +677,18 @@ public class Controller implements Initializable {
 //            else meTasks.setText(meTasksStr);
             mePrice.setText(mePriceStr);
             meTasks.setVisible(false);
-            if(meTasksStr!=null)System.out.println(meTasksStr.replaceAll("\n"," "));
-            System.out.println("Init str: "+str);
+//            if(meTasksStr!=null)System.out.println(meTasksStr.replaceAll("\n"," "));
+//            System.out.println("Init str: "+str);
             str="";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
     }
 
 
     public void tableRefresh() {
         try {
-            System.out.println("table refresh called");
+//            System.out.println("table refresh called");
             if (Main.evp1.getEvents().size() < 1) {
                 eventTableViewForCustomer.getItems().clear();
                 eventTableViewForEmployee.getItems().clear();
@@ -701,7 +701,7 @@ public class Controller implements Initializable {
                     if (e instanceof TourPackage) {
                         eventTableViewForCustomerRegisterTour.getItems().add(e);
                         eventTableViewForCustomer.getItems().add(e);
-                        System.out.println(((TourPackage) e).getNumOfRegisteredParticipants());
+//                        System.out.println(((TourPackage) e).getNumOfRegisteredParticipants());
                     } else {
                         eventTableViewForCustomer.getItems().add(e);
                     }
@@ -795,7 +795,7 @@ public class Controller implements Initializable {
                         event.getRowValue().setEventManager(event.getNewValue());
                     }
                 } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
+//                    System.out.println(ex.getMessage());
                 }
             });
 
@@ -806,7 +806,7 @@ public class Controller implements Initializable {
                     alert.setTitle("Confirmation.");
                     alert.setContentText("Are you want to change the information?");
                     if (alert.showAndWait().get() == ButtonType.OK) {
-                        System.out.println(event.getNewValue());
+//                        System.out.println(event.getNewValue());
                         event.getRowValue().setNumOfParticipants(event.getNewValue());
                     }
                 } catch (Exception ex) {
@@ -865,7 +865,7 @@ public class Controller implements Initializable {
             stage.setTitle("Search Event");
 
         } catch (Exception e) {
-            System.out.println("Something went wrong");
+//            System.out.println("Something went wrong");
         }
     }
     public void searchForTourBtnForEmployee(ActionEvent event) {
@@ -879,85 +879,18 @@ public class Controller implements Initializable {
             stage.setTitle("Search Event");
 
         } catch (Exception e) {
-            System.out.println("Something went wrong");
+//            System.out.println("Something went wrong");
         }
     }
     @FXML
     TextField searchTourId=new TextField();
 
     public void searchForTourForCustomer(ActionEvent event) {
-//        TableView<TourPackage> tableView = new TableView<>();
-//        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
-//        TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
-//        TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
-//        TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
-//        TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
-//        TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
-//        TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
-//        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
-//        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-//        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
-//        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
-//        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
-//        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-//        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-//        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
-//        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
-//        tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
-//        System.out.println(searchTourId.getText());
+        eventTableViewForCustomerRegisterTour.getItems().clear();
         ArrayList<TourPackage>tourList=new ArrayList<>();
         for(Event it:Main.evp1.searchForTourPackages(searchTourId.getText())) {
-            if(it instanceof TourPackage)tourList.add((TourPackage) it);
+            if(it instanceof TourPackage)eventTableViewForCustomerRegisterTour.getItems().add((TourPackage)it);
         }
-        showModal(stage,tourList);
-    }
-
-    public void showModal(Stage ownerStage,ArrayList<TourPackage>events) {
-        TableView<TourPackage> tableView = new TableView<>();
-        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
-        TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
-        TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
-        TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
-        TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
-        TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
-        TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
-        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
-        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
-        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
-        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
-        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
-        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
-        tableView.getItems().addAll(events);
-//        System.out.println(searchTourId.getText());
-        Stage modalStage = new Stage();
-        modalStage.initOwner(ownerStage);  // Set the owner of the modal to be the main window
-        modalStage.initModality(Modality.WINDOW_MODAL);  // Make the window modal
-        VBox modalRoot = new VBox(tableView);
-        Button closeButton = new Button("Close Modal");
-        closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
-        modalRoot.getChildren().add(closeButton);
-        Scene modalScene = new Scene(modalRoot, Toolkit.getDefaultToolkit().getScreenSize().getHeight(), Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        modalStage.setTitle("Result");
-        modalStage.setMaximized(true);
-        modalStage.setScene(modalScene);
-        modalStage.showAndWait(); // // Show the modal and block interaction with the main window
     }
 
     @FXML
@@ -1003,73 +936,12 @@ public class Controller implements Initializable {
 
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
 
     }
 
-    @FXML
-    TableView<TourPackage> tableViewModal = new TableView<>();
-//        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
-    @FXML
-    TableColumn<TourPackage, String> tourIdColModal = new TableColumn<>("Tour Id");
-    @FXML
-    TableColumn<TourPackage, String> tourTitleColModal = new TableColumn<>("Tour Name");
-    @FXML
-    TableColumn<TourPackage, LocalDate> tourDateModal = new TableColumn<>("Tour Description");
-    @FXML
-    TableColumn<TourPackage, Integer> tourDurationModal = new TableColumn<>("Tour Duration");
-    @FXML
-    TableColumn<TourPackage, Integer> tourPriceModal = new TableColumn<>("Unit Price");
-    @FXML
-    TableColumn<TourPackage, Integer> tourNumOfParticipantsModal = new TableColumn<>("Tour Number of Participants");
-//    @FXML
-//    TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
-//        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-//        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
-//        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
-//        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
-//        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-//        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-//        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
-//        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-//        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
 
-    public void showModal(Stage ownerStage,boolean ok,ArrayList<Event>events) {
-        try{
-
-            Stage modalStage = new Stage();
-            modalStage.initOwner(ownerStage);
-            modalStage.initModality(Modality.APPLICATION_MODAL);
-            Timeline timeline = new Timeline(
-                    new KeyFrame(javafx.util.Duration.seconds(60),
-                            event -> modalStage.close())
-            );
-            timeline.setCycleCount(1); // Run only once
-            timeline.play();
-            Pane modalRoot =FXMLLoader.load(getClass().getResource("Modal2.fxml"));
-//            closeButton.setOnAction(e -> modalStage.close());  // Close the modal on button click
-//            closeButton.setStyle("-fx-background-color: #FF5733; -fx-font-size: 16; -fx-font-weight: bold;-fx-pref-width: 250;-fx-pref-height: 250;text: \"Close\";");
-//            closeButton.setText("Close");
-            Scene modalScene = new Scene(modalRoot);
-            eventTableViewForCustomerRegisterTour.getItems().addAll(events);
-            modalStage.setTitle("Result");
-            modalStage.setMaximized(true);
-            modalStage.setScene(modalScene);
-            modalStage.showAndWait();
-
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
 // search tour end
 //    get data from table start
     public static String meidStr,meTitleStr,meDateStr,meDurationStr,mePriceStr,meNumOfParticipantsStr,meTasksStr,mePlacesStr,str;
@@ -1080,34 +952,25 @@ public class Controller implements Initializable {
                     return;
                 }
                 Event event1= eventTableViewForCustomer.getItems().get(selectedIndex);
-                meidStr="Event id: "+event1.getEventId();
-                meTitleStr="Event title: "+event1.getEventTitle();
-                meDateStr="Event date: "+event1.getEventDate().toString();
-                meDurationStr="Duration days of event: "+String.valueOf((Integer) event1.getDurationInDays());
-                mePriceStr="Per person fee: "+ String.valueOf((Integer) event1.getUnitPrice());
-                meNumOfParticipantsStr="Maximum number of participants: " +String.valueOf((Integer) event1.getNumOfParticipants());
-                if(event1.getTasks().size()>0)meTasksStr="Tasks of event: "+event1.getTasks().toString();
+                meidStr="Event id: "+eventTableViewForCustomer.getItems().get(selectedIndex).getEventId();
+                meTitleStr="Event title: "+eventTableViewForCustomer.getItems().get(selectedIndex).getEventTitle();
+                meDateStr="Event date: "+eventTableViewForCustomer.getItems().get(selectedIndex).getEventDate().toString();
+                meDurationStr="Duration days of event: "+String.valueOf((Integer) eventTableViewForCustomer.getItems().get(selectedIndex).getDurationInDays());
+                mePriceStr="Per person fee: "+ String.valueOf((Integer) eventTableViewForCustomer.getItems().get(selectedIndex).getUnitPrice());
+                meNumOfParticipantsStr="Maximum number of participants: " +String.valueOf((Integer) eventTableViewForCustomer.getItems().get(selectedIndex).getNumOfParticipants());
+                if(event1.getTasks().size()>0)meTasksStr="Tasks of event: "+eventTableViewForCustomer.getItems().get(selectedIndex).getTasks().toString();
                 else meTasksStr="No tasks selected yet.";
-                TourPackage tp=(TourPackage)event1;
+                TourPackage tp=(TourPackage)eventTableViewForCustomer.getItems().get(selectedIndex);
                 if(tp.getPlacesToVisit().size()>0)mePlacesStr="Visting places: "+tp.getPlacesToVisit().toString();
                 else mePlacesStr="No place selected yet.";
                 str=meidStr+meTitleStr+meDateStr+meDurationStr+mePriceStr+meNumOfParticipantsStr+mePlacesStr;
 //                System.out.println(event1.toString());
-                System.out.println("Str2024 :"+str);
-                System.out.println("tasks: "+meTasksStr);
+//                System.out.println("Str2024 :"+str);
+//                System.out.println("tasks: "+meTasksStr);
                 showModal(stage);
-                /*
-                System.out.println(event1.getEventId());
-                System.out.println(event1.getEventTitle());
-                System.out.println(event1.getEventDate());
-                System.out.println(event1.getDurationInDays());
-                System.out.println(event1.getUnitPrice());
-                System.out.println(event1.getNumOfParticipants());
-                System.out.println(event1.getPaymentStatus());
-                System.out.println(event1.getTasks());*/
             }
             catch (Exception e) {
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
             }
     }
 
