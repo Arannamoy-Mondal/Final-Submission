@@ -438,18 +438,26 @@ public class Controller implements Initializable {
         try {
             if (addTaskRadioBtn.isSelected()) {
 //                try {
+                if(eventIdTaskManage.getText().length()>0 && taskTitleTaskManage.getText().length()>0 && taskDescriptionTaskManage.getText().length()>0) {
                     Main.evp1.addEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText(), taskDescriptionTaskManage.getText());
                     System.out.println(Main.evp1.getEvents());
                     messgaeBoxTaskManage.setText("Task added successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
                     messgaeBoxTaskManage.setVisible(true);
+                    tableRefresh();
+                }
+                else{
+                    messgaeBoxTaskManage.setText("Please enter data correctly.");
+                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733; -fx-font-weight: bold; -fx-font-size: 16;");
+                    messgaeBoxTaskManage.setVisible(true);
+                }
 //                } catch (Exception e) {
 ////                    System.out.println(eventIdTaskManage.getText() + " " + taskTitleTaskManage.getText() + " " + taskDescriptionTaskManage.getText());
 //                    messgaeBoxTaskManage.setText(e.getMessage().toString());
 //                    messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16");
 //                    messgaeBoxTaskManage.setVisible(true);
 //                }
-                tableRefresh();
+
             } else if (startTaskRadioBtn.isSelected()) {
 ////                System.out.println("Star Task");
 //                try {
@@ -475,7 +483,7 @@ public class Controller implements Initializable {
             } else if (endTaskRadioBtn.isSelected()) {
 ////                System.out.println("End Btn");
 //                try {
-                    if(taskTitleTaskManage.getText()!=null){
+                    if(taskTitleTaskManage.getText().length()>0){
                     Main.evp1.completeEventTask(eventIdTaskManage.getText(), taskTitleTaskManage.getText());
                     messgaeBoxTaskManage.setText("Task completed successfully.");
                     messgaeBoxTaskManage.setStyle("-fx-background-color:#13ea31; -fx-font-weight: bold; -fx-font-size: 16;");
@@ -499,7 +507,7 @@ public class Controller implements Initializable {
             }
         } catch (Exception e) {
             messgaeBoxTaskManage.setText(e.getMessage());
-            messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;");
+            messgaeBoxTaskManage.setStyle("-fx-background-color:#FF5733;-fx-font-weight: bold;-fx-font-size: 16;");
             messgaeBoxTaskManage.setVisible(true);
         }
     }

@@ -81,6 +81,7 @@ public abstract class Event implements Serializable {
     public boolean completeTask(String title) {
         Task t = findTask(title);
         if (t == null) return false;
+        if(t.getStatus()!="In Progress")return false;
         t.completeTask();
         return true;
     }
