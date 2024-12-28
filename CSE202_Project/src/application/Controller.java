@@ -315,7 +315,7 @@ public class Controller implements Initializable {
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
             String tourId;
-            if(placesForOferTourPackage.getText()==null){
+            if(placesForOferTourPackage.getText().length()>0){
             tourId = Main.evp1.offerTourPackage(
                     eventTitleForOfferTourPackage.getText(),
                     eventDateForOfferTourPackage.getValue(),

@@ -248,10 +248,14 @@ public class EventPlanner {
     // method j
     public void assignEventManager(String eventID, String managerName) throws Exception {
         Event chk = findEvent(eventID);
+        if(managerName.length()<1)throw new Exception("Enter manager name length must be greater than 0.");
         if (chk != null) {
             chk.setEventManager(managerName);
         }
-        throw new Exception("Event id not found.");
+        else{
+            throw new Exception("Event id not found.");
+        }
+
     }
 
     // method k
