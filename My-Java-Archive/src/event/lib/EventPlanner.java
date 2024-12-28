@@ -236,6 +236,8 @@ public class EventPlanner {
 
     // method i
     public void registerForTour(String tourId, int participants, String contact) throws Exception {
+        if(participants<1)throw new Exception("Participants must be greater than 0.");
+        if(contact.length()!=11)throw new Exception("Provide valid contact number.");
         Event chk = findEvent(tourId);
         if (chk != null) {
             if(((TourPackage)chk).registerForTour(participants, contact)==false)throw new Exception("Registration limit over.");
