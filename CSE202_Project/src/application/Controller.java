@@ -308,13 +308,25 @@ public class Controller implements Initializable {
     public void offerTourPackageSubmitBtn(ActionEvent e) {
         try {
             String tourId;
-            if(placesForOferTourPackage.getText()==null){
+            if(eventTitleForOfferTourPackage.getText().length()<1 || !(eventDateForOfferTourPackage.getValue() instanceof LocalDate) ||
+            durationDaysForOfferTourPackage.getText().length()<1 || numberOfParticipantsForOfferTourPackage.getText().length()<1 || perPersonForOfferTourPackage.getText().length()<1) {
+
+                massageBoxOfferBtn.setText("Please correct enter data.");
+                massageBoxOfferBtn.setStyle("-fx-background-color: #FF5733");
+                massageBoxOfferBtn.setVisible(true);
+
+            }
+            else if(placesForOferTourPackage.getText()==null){
             tourId = Main.evp1.offerTourPackage(
                     eventTitleForOfferTourPackage.getText(),
                     eventDateForOfferTourPackage.getValue(),
                     Integer.parseInt(durationDaysForOfferTourPackage.getText()),
                     Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                     Integer.parseInt(perPersonForOfferTourPackage.getText()));
+
+                massageBoxOfferBtn.setText("Offered tour successfully.");
+                massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
+                massageBoxOfferBtn.setVisible(true);
             }
             else{
                 ArrayList<String> placesToVisit = new ArrayList<>(Arrays.asList(placesForOferTourPackage.getText().split(",")));
@@ -326,10 +338,11 @@ public class Controller implements Initializable {
                         Integer.parseInt(numberOfParticipantsForOfferTourPackage.getText()),
                         Integer.parseInt(perPersonForOfferTourPackage.getText()),
                         placesToVisit);
+
+                massageBoxOfferBtn.setText("Offered tour successfully.");
+                massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
+                massageBoxOfferBtn.setVisible(true);
             }
-            massageBoxOfferBtn.setText("Offered tour successfully.");
-            massageBoxOfferBtn.setStyle("-fx-background-color: #13ea31 ");
-            massageBoxOfferBtn.setVisible(true);
 //            massageBoxOfferBtn.setDisable(true);
 ////            System.out.println(Main.evp1.getEvents());
         } catch (Exception er) {
