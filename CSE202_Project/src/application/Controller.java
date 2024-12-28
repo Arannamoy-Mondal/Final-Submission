@@ -866,42 +866,11 @@ public class Controller implements Initializable {
     TextField searchTourId=new TextField();
 
     public void searchForTour(ActionEvent event) {
-//        root.getChildren().add(tableView);
-//        stage.show();
-//        stage.setTitle("Search Event");
-
-//
-
-//        tableView.setItems(list);
-        TableView<TourPackage> tableView = new TableView<>();
-        tableView.setStyle("-fx-font-size: 16;-fx-font-weight: bold;-fx-alignment: center;-fx-pref-height: 500;-fx-pref-width: 700;");
-        TableColumn<TourPackage, String> tourIdCol = new TableColumn<>("Tour Id");
-        TableColumn<TourPackage, String> tourTitleCol = new TableColumn<>("Tour Name");
-        TableColumn<TourPackage, LocalDate> tourDate = new TableColumn<>("Tour Description");
-        TableColumn<TourPackage, Integer> tourDuration = new TableColumn<>("Tour Duration");
-        TableColumn<TourPackage, Integer> tourPrice = new TableColumn<>("Unit Price");
-        TableColumn<TourPackage, Integer> tourNumOfParticipants = new TableColumn<>("Tour Number of Participants");
-        TableColumn<TourPackage, ArrayList<Task>> tourTasks = new TableColumn<>("Tour Tasks");
-        tourIdCol.setCellValueFactory(new PropertyValueFactory<>("eventId"));
-        tourIdCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourTitleCol.setCellValueFactory(new PropertyValueFactory<>("eventTitle"));
-        tourTitleCol.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourDate.setCellValueFactory(new PropertyValueFactory<>("eventDate"));
-        tourDate.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourDuration.setCellValueFactory(new PropertyValueFactory<>("durationInDays"));
-        tourDuration.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        tourPrice.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourNumOfParticipants.setCellValueFactory(new PropertyValueFactory<>("numOfParticipants"));
-        tourNumOfParticipants.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tourTasks.setCellValueFactory(new PropertyValueFactory<>("tasks"));
-        tourTasks.setStyle("-fx-alignment: center;-fx-pref-width: 100;");
-        tableView.getColumns().addAll(tourIdCol, tourTitleCol, tourDate, tourDuration, tourPrice, tourNumOfParticipants, tourTasks);
-        tableView.getItems().addAll(Main.evp1.searchForTourPackages(searchTourId.getText()));
-
-        System.out.println(searchTourId.getText());
-        showModal(stage,tableView);
-//        showModal(stage);
+        ArrayList<TourPackage> tp=Main.evp1.searchForTourPackages(searchTourId.getText());
+        eventTableViewForCustomerRegisterTour.getItems().clear();
+        if(tp.size()>0){
+            eventTableViewForCustomerRegisterTour.getItems().addAll(tp);
+        }
     }
 
     public void showModal(Stage ownerStage,TableView<TourPackage>tableView) {
