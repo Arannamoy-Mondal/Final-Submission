@@ -238,9 +238,10 @@ public class EventPlanner {
     public void registerForTour(String tourId, int participants, String contact) throws Exception {
         Event chk = findEvent(tourId);
         if (chk != null) {
-            ((TourPackage)chk).registerForTour(participants, contact);
+            if(((TourPackage)chk).registerForTour(participants, contact)==false)throw new Exception("Registration limit over.");
         }
 //        System.out.println(events);
+        throw new Exception("Event id not found.");
 
     }
 
@@ -250,6 +251,7 @@ public class EventPlanner {
         if (chk != null) {
             chk.setEventManager(managerName);
         }
+        throw new Exception("Event id not found.");
     }
 
     // method k
@@ -260,6 +262,7 @@ public class EventPlanner {
 //            System.out.println("Done");
 //            return true;
         }
+        throw new Exception("Event id not found.");
 //        System.out.println("Not Done");
 //        return false;
     }
