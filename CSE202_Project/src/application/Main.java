@@ -31,14 +31,14 @@ public class Main extends Application {
 				event.consume();
 				try {
 					logOut(primaryStage);
-					System.out.println(evp1.getEvents().toString());
+//					System.out.println(evp1.getEvents().toString());
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
+//					System.out.println(e.getMessage());
 				}
 			});
 			
 		} catch(Exception e) {
-			System.out.println();
+//			System.out.println();
 		}
 	}
 	public void logOut(Stage stage) {
@@ -59,9 +59,9 @@ public class Main extends Application {
 				evp1=new EventPlanner("evp1");
 			}
 //			evp1.offerTourPackage("Tour Venus",LocalDate.now(),20,20,50000);
-			System.out.println(evp1.getEvents().toString());
+//			System.out.println(evp1.getEvents().toString());
 		}catch(Exception e){
-			System.out.println(e);
+//			System.out.println(e);
 		}
 		launch(args);
 
