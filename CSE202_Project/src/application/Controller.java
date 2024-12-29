@@ -919,7 +919,7 @@ public class Controller implements Initializable {
             modalStage.initOwner(ownerStage);
             modalStage.initModality(Modality.APPLICATION_MODAL);
             Timeline timeline = new Timeline(
-                    new KeyFrame(javafx.util.Duration.seconds(60),
+                    new KeyFrame(javafx.util.Duration.seconds(5),
                             event -> modalStage.close())
             );
             timeline.setCycleCount(1); // Run only once

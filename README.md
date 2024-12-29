@@ -1,6 +1,11 @@
-# Introduction: <p>This is a basic event management project based on JavaFX.</p>
-# Requirement : <a href="https://gluonhq.com/products/javafx/"> JavaFX SDK</a>,<a href="https://www.oracle.com/bd/java/technologies/downloads/"> JDK 23</a>, SceneBuilder For Editing
-# Must use JDK 23 for running JAR File. JAR file Download link: <a href="https://github.com/Arannamoy-Mondal/Final-Submission/raw/refs/heads/main/CSE202_Project/out/artifacts/CSE202_Project_jar/CSE202_Project.jar">Click Here</a>
+# Download link: <a href="https://github.com/Arannamoy-Mondal/Final-Submission/raw/refs/heads/main/CSE202_Project/out/artifacts/CSE202_Project_jar/CSE202_Project.jar">Click Here</a>
+
+# Requirement : <a href="https://gluonhq.com/products/javafx/"> JavaFX SDK</a>,<a href="https://www.oracle.com/bd/java/technologies/downloads/"> JDK 23</a>
+
+# Must use JDK 23 for running JAR File. JAR file 
+
+# N.B. Issue in display resolution for Windows OS. Because this project mainly developed in Linux Os. But, all other part without display resolution is okay. If face this problem, just use maximize shortcut ( Windows Key + Up arrow key ) for Windows OS.
+
 # .bat file command for run.bat 
 ```txt
 java --module-path path\javafx\lib --add-modules javafx.controls,javafx.fxml -jar JarFileName.jar
@@ -32,5 +37,3 @@ java --module-path path\javafx\lib --add-modules javafx.controls,javafx.fxml -ja
 #0af02d
 ```
 
-
-# update: messagebox for requestTourPackage, messagebox for every window when no eventFound,
